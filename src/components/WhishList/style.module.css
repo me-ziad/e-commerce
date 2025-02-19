@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+.styleHeader{
+    font-family: "Rowdies", serif;
+  font-weight: 300;
+  font-style: normal;
+  text-shadow: 1px 1px 2px #0aad0a;
+}
