@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../CartContext/CartContext'
-import Loader from '../Loader/loader'
 import {NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
@@ -110,7 +109,7 @@ export default function Cart() {
         
       </>:
       <div className="container h-screen flex justify-center items-center">
-              <Loader></Loader>
+              <h1 className='text-main text-5xl '> your cart is empty</h1>
           </div>
           } 
     
