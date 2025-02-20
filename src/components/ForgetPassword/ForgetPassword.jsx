@@ -22,12 +22,12 @@ let navigate =useNavigate()
     try{
     setLoading(true)
     let {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords',values)
-    console.log(data);
+    // console.log(data);
     toast.success(data.message)
     navigate('/codePass')
 
   }catch(err){
-      console.log(err);
+      // console.log(err);
       setLoading(false)
     }finally{
       setLoading(false)

@@ -1,14 +1,12 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, NavLink, useParams } from 'react-router-dom'
-import Slider from "react-slick";
+import {NavLink, useParams } from 'react-router-dom'
+
 import Loader from '../Loader/loader';
 import { CartContext } from '../CartContext/CartContext';
 import Home from '../Home/Home';
 export default function PrandsDetails() {
 
-
-    let {addCart} = useContext(CartContext)
     const [loader, setLoader] = useState(true)
     const [category, setCategory] = useState({})
   let {id} = useParams()
@@ -18,7 +16,7 @@ export default function PrandsDetails() {
             setLoader(true)
             let data=await axios.get(`https://ecommerce.routemisr.com/api/v1/categories/${details}`)
                setCategory(data.data.data)
-               console.log(data.data.data);
+              //  console.log(data.data.data);
                
                setLoader(false)
 

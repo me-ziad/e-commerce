@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet";
 import CategorySlider from "../CategorySlider/CategorySlider";
 import HomeSliderCateory from "../HomeSliderCategory/HomeSliderCateory";
-import Loader from "../Loader/loader";
 import RecentProduct from "../RecentProduct/RecentProduct";
 
 

@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
 import style from './RecentProduct'
 import axios from "axios"
-import { useEffect, useState } from "react";
-import { data, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import Loader from '../Loader/loader';
 import { CartContext } from '../CartContext/CartContext';
-import { useQueries, useQuery } from '@tanstack/react-query';
+import {useQuery } from '@tanstack/react-query';
 import { WhisListContext } from '../../WhishListContext/WhishListContext';
 export default function RecentProduct() {
     

@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
-import style from './Cart.module.css'
 import { CartContext } from '../CartContext/CartContext'
 import Loader from '../Loader/loader'
-import { Link, Links, NavLink } from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 

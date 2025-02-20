@@ -53,7 +53,7 @@ export default function ProductDetails() {
             let {data:{data}}=await axios.get(`https://ecommerce.routemisr.com/api/v1/products`)
               let relatedProduct = data
              let relatedProductt = relatedProduct.filter(product => product.category.name== category)
-              console.log(relatedProductt);
+              // console.log(relatedProductt);
                setRelatedProductCategory(relatedProductt)
                
                setLoader(false)

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { data, NavLink } from 'react-router-dom';
+import {NavLink } from 'react-router-dom';
 import Slider from 'react-slick';
 
 export default function CategorySlider() {

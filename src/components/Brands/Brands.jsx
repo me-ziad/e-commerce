@@ -1,8 +1,6 @@
 import axios from "axios"
-import { useEffect, useState } from "react";
-import { data, Link, Links } from "react-router-dom";
+import {useState } from "react";
 import Loader from '../Loader/loader';
-import logo from '../../assets/slider-image-2-Xt88XJy9.jpeg'
 import { useQuery } from "@tanstack/react-query"
 import style from './Brands.module.css'
 
@@ -33,7 +31,7 @@ export default function prands() {
             setLoader(true)
             let data=await axios.get(`https://ecommerce.routemisr.com/api/v1/brands/${id}`)
                setBrandsDetails(data?.data?.data)
-               console.log(data?.data?.data);
+              //  console.log(data?.data?.data);
                
                setLoader(false)
 

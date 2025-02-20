@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useContext, useState } from 'react'
 import { CartContext } from '../CartContext/CartContext';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 export default function PayCash() {
@@ -35,7 +35,7 @@ export default function PayCash() {
 
 
     }catch(error){
-      console.log(error); 
+      // console.log(error); 
       setLoading(false)
       
     }

@@ -1,9 +1,7 @@
 import React, { useContext } from 'react'
 import { WhisListContext } from '../../WhishListContext/WhishListContext'
 import { CartContext } from '../CartContext/CartContext'
-import Slider from 'react-slick'
 import Loader from '../Loader/loader'
-import { h1 } from 'motion/react-client'
 import style from '../WhishList/style.module.css'
 import { Helmet } from 'react-helmet'
 

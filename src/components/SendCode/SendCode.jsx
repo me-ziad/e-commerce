@@ -3,8 +3,6 @@ import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import * as yup from 'yup'
-
 
 export default function SendCode() {
 
@@ -21,7 +19,7 @@ let navigate =useNavigate()
     navigate('/rePass')
 
   }catch(err){
-      console.log(err);
+      // console.log(err);
       setLoading(false)
     }finally{
       setLoading(false)

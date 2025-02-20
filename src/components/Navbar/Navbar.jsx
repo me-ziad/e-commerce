@@ -12,25 +12,18 @@ export default function Navbar() {
   const [isScrolling, setIsScrolling] = useState(false)
 
   let ref = useRef() 
-
-  
-  
   let navigate = useNavigate()
-
   let {UserToken,setUserToken} =useContext(UserContext)
   let {showWhishList}= useContext(WhisListContext)
   let {cart} = useContext(CartContext)
 
   let body = document.body
   useEffect(()=>{
-
     if(localStorage.getItem('darkMood')){
      document.body.classList.add('dark')   
        body.style.backgroundColor = '#030712'
        ref.current.checked == true
-      
     }
-
   },[])
 
   function toggleMe(){
@@ -39,19 +32,16 @@ export default function Navbar() {
         body.classList.add('dark')
         body.style.backgroundColor = '#030712'
         localStorage.setItem('darkMood' , 'dark')
-
-
       }else{
         body.classList.remove('dark')
         body.style.backgroundColor = 'white'
        localStorage.removeItem('darkMood')
-
       }
       
       
     }
   function deleteToken(){
-    console.log('deleteToken');
+    // console.log('deleteToken');
     localStorage.removeItem('userToken');
     // window.location.reload();
     navigate('/login');
@@ -60,14 +50,12 @@ export default function Navbar() {
   }
 
   function handelScroll() {
-
     if(window.scrollY > 20){
       setIsScrolling(true)
     }else{
       setIsScrolling(false);
     }
   }
-
 
   window.addEventListener('scroll', handelScroll);
 
@@ -89,12 +77,11 @@ export default function Navbar() {
         </button>
       </div>
       {UserToken &&
-        
       <div className="hidden lg:flex lg:gap-x-4 ms-7">
         <NavLink to={''} className="text-sm/6 font-semibold  text-gray-500 dark:text-gray-400">Home</NavLink>
         <NavLink to={'category'} className="text-sm/6 font-semibold  text-gray-500 dark:text-gray-400">Category</NavLink>
         <NavLink to={'brands'} className="text-sm/6 font-semibold  text-gray-500 dark:text-gray-400">Brands</NavLink>
-        <NavLink to={'products'} className="text-sm/6 font-semibold  text-gray-500 dark:text-gray-400">products</NavLink>
+        <NavLink to={'products'} className="text-sm/6 font-semibold  text-gray-500 dark:text-gray-400">Products</NavLink>
       </div>
       }
         {UserToken ?
@@ -121,15 +108,15 @@ export default function Navbar() {
            </NavLink>
        <div className=' flex justify-center'>
  <a href="https://www.facebook.com/share/1BJvTnY5Wq/">
-   <i className="fa-brands dark:text-gray-400 hover:text-blue-700 dark:hover:text-blue-700 hover:cursor-pointer fa-facebook me-3 text-xl" />
+   <i className="fa-brands text-gray-600 dark:text-gray-400 hover:text-blue-700 dark:hover:text-blue-700 hover:cursor-pointer fa-facebook me-3 text-xl" />
   </a>
-  <i className="fa-brands hover:text-blue-600 dark:hover:text-blue-600 dark:text-gray-400 hover:cursor-pointer fa-linkedin me-3 text-xl" />
+  <i className="fa-brands text-gray-600 hover:text-blue-600 dark:hover:text-blue-600 dark:text-gray-400 hover:cursor-pointer fa-linkedin me-3 text-xl" />
   <a href="https://github.com/11ziad">
 
-  <i className="fa-brands hover:text-gray-600 dark:hover:text-gray-600 hover:cursor-pointer dark:text-gray-400 fa-github me-3 text-xl" />
+  <i className="fa-brands text-gray-600 hover:text-gray-600 dark:hover:text-gray-600 hover:cursor-pointer dark:text-gray-400 fa-github me-3 text-xl" />
   </a>
 
-  <i className="fa-solid hover:text-yellow-600 dark:hover:text-yellow-600 hover:cursor-pointer fa-envelope me-3 dark:text-gray-400 text-xl"></i>
+  <i className="fa-solid text-gray-600 hover:text-yellow-600 dark:hover:text-yellow-600 hover:cursor-pointer fa-envelope me-3 dark:text-gray-400 text-xl"></i>
 </div>
  
 <label className="inline-flex items-center cursor-pointer">
@@ -137,12 +124,9 @@ export default function Navbar() {
   <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600" />
   <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
 </label>
-      <span onClick={()=>{deleteToken()}} className="text-sm/6 font-semibold hover:cursor-pointer hover:text-main lg:translate-y-1 dark:text-gray-400 text-gray-500">Log out_<i className="fa-solid fa-arrow-right-from-bracket text-main"></i></span>
-
-    
+      <span onClick={()=>{deleteToken()}} className="text-sm/6 font-semibold hover:cursor-pointer hover:text-main lg:translate-y-1 dark:text-gray-400 text-gray-500">Log out_<i className="fa-solid fa-arrow-right-from-bracket text-main"></i></span>  
             </div>  :<>
  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:gap-x-3 lg:justify-end">
-    
     <NavLink to={'register'} className="text-sm/6 font-semibold  dark:text-gray-400 ">Register </NavLink>
     <NavLink to={'login'} className="text-sm/6 font-semibold rounded-md py-1 px-3  dark:text-gray-400 text-black">Log in <span aria-hidden="true">→</span></NavLink>
     </div>
@@ -176,8 +160,6 @@ export default function Navbar() {
   <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600" />
   <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
 </label>
-      
-          
         </div>
 
         <div className="mt-6 flow-root">
@@ -196,7 +178,6 @@ export default function Navbar() {
            </NavLink>
         <NavLink to={'cart'} className="text-sm/6  py-3 font-semibold  text-gray-500">
         
-        
 <button type="button" className="relative inline-flex items-center  text-sm font-medium text-center text-white  rounded-lg hover:scale-110 transition-all  focus:outline-none ">
 <span className="sr-only">Notifications</span>
   <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-main border-2 border-white rounded-full -top-2 -end-2 ">{cart?.numOfCartItems}</div>
@@ -204,37 +185,29 @@ export default function Navbar() {
 </button>
            </NavLink>
 
-           
-
               <NavLink to={'category'} className="-mx-3 block rounded-lg px-3 py-3 text-base/7 font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Category</NavLink>
               <NavLink to={'brands'} className="-mx-3 block rounded-lg px-3 py-3 text-base/7 font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Brands</NavLink>
               <NavLink to={'products'} className="-mx-3 block rounded-lg px-3 py-3 text-base/7 font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Products</NavLink>
 
               <div className=' flex justify-center'>
-  <i className="fa-brands dark:text-gray-400  hover:text-blue-700 hover:cursor-pointer fa-facebook me-2  text-xl" />
-  <i className="fa-brands dark:text-gray-400 hover:text-blue-600 hover:cursor-pointer fa-linkedin me-2 text-xl" />
-  <i className="fa-brands dark:text-gray-400 hover:text-gray-600 hover:cursor-pointer fa-github me-2 text-xl" />
-  <i className="fa-solid hover:text-yellow-600 dark:text-gray-400 hover:cursor-pointer fa-envelope me-2 text-xl"></i>
-</div>
- 
-            </div>
+                <i className="fa-brands dark:text-gray-400  hover:text-blue-700 hover:cursor-pointer fa-facebook me-2  text-xl" />
+                 <i className="fa-brands dark:text-gray-400 hover:text-blue-600 hover:cursor-pointer fa-linkedin me-2 text-xl" />
+                  <i className="fa-brands dark:text-gray-400 hover:text-gray-600 hover:cursor-pointer fa-github me-2 text-xl" />
+                   <i className="fa-solid hover:text-yellow-600 dark:text-gray-400 hover:cursor-pointer fa-envelope me-2 text-xl"></i>
+                  </div>
+              </div>
           }
 
             {UserToken ?<>
             <div className="py-6">
-              
               <NavLink to={'LogOut'} className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  dark:text-gray-400  text-gray-900 dark:hover:bg-gray-800 hover:bg-gray-50">Log out_<i className="fa-solid ms-2 fa-arrow-right-from-bracket text-main"></i></NavLink></div>
-     
-            </>
-              
-              :
+            </>:
               <>
               <div className="py-6">
               <NavLink to={'register'} className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  dark:text-gray-400 text-gray-900 hover:bg-gray-50">Register</NavLink>
               <NavLink to={'login'} className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  dark:text-gray-400  text-white hover:bg-gray-50">Log in</NavLink>
               <div className=" flex items-center gap-x-4 mt-4 lg:me-3 lg:mt-1">
-
-      </div>
+              </div>
             </div>
 </>
             }

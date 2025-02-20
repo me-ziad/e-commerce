@@ -17,7 +17,7 @@ export default function CartContextProvider({children}){
 
 
         async function addCart(productId){
-            console.log(productId);
+            // console.log(productId);
             
             try{
                 let {data} =await axios.post(`https://ecommerce.routemisr.com/api/v1/cart`,{
@@ -27,7 +27,7 @@ export default function CartContextProvider({children}){
                 }
             );
              displayCart()
-               console.log(data.data);
+            //    console.log(data.data);
                toast.success(data.message);
                
 
@@ -45,7 +45,7 @@ export default function CartContextProvider({children}){
                 }
             );
                setCart(data)
-               console.log(data);
+            //    console.log(data);
 
             }catch(err){
                 console.log(err);

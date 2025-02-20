@@ -2,9 +2,8 @@ import React, { useContext, useState } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import axios from 'axios'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 import { UserContext } from '../../Context/UserContext'
-import toast from 'react-hot-toast'
 
 
 export default function NewPass() {
@@ -27,7 +26,7 @@ let {setUserToken} = useContext(UserContext)
     try{
     setLoding(true)
     let {data} = await axios.put('https://ecommerce.routemisr.com/api/v1/auth/resetPassword',values)
-    console.log(data);
+    // console.log(data);
     localStorage.setItem('userToken', data.token)
     setUserToken(data.token)
     setLoding(false)
@@ -36,7 +35,7 @@ let {setUserToken} = useContext(UserContext)
     navigate('/')
 
   }catch(err){
-      console.log(err.response.data.message);
+      // console.log(err.response.data.message);
       setErrApi(err.response.data.message)
       
       setLoding(false)

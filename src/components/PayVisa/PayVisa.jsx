@@ -24,7 +24,7 @@ let {cart} =useContext(CartContext)
   window.location.href = data.session.url
   toast(data.status)
   
-  console.log(data);
+  // console.log(data);
 }catch(err){
   console.log(err.data);
   

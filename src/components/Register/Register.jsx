@@ -9,47 +9,6 @@ import { UserContext } from '../../Context/UserContext'
 
 export default function Register() {
 
-
-  // function validateForm(values) {
-
-  //   let erorr = {};
-
-  //   if(!values.name){
-  //     erorr.name = 'Name Is Required';
-  //   }else if(!/^[A-Z]\w{3,15}$/.test(values.name)){
-  //       erorr.name = 'Invalid Name Ex (Ziad)';
-  //   };
-    
-  //   if(!values.email){
-  //     erorr.email =' Email Is Required'
-  //   }else if(!/^[A-Z]\w{3,15}$/.test(values.email)){
-  //       erorr.email ='emil Invalid'        
-  //   }
-
-
-  //   if(!values.password){
-  //     erorr.password = 'Psswords must not be empty'
-  //   }else if(!/^[a-z]\w{3,15}$/.test(values.password)){
-  //     erorr.password = 'Psswords must have at least three character'
-
-  //   }
-
-  //   if(values.rePassword != values.password){
-  //     erorr.rePassword = 'Not Match'
-  //   }
-
-  //   return erorr;
-
-  // }
-
-
-
-
-
-// !/^[A-Z]\w{3,15}$/
-
-
-
 const [loding, setLoding] = useState(false)
 const [errApi, setErrApi] = useState(false)
 
@@ -75,7 +34,7 @@ let {UserToken,setUserToken} = useContext(UserContext)
     try{
     setLoding(true)
     let {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup',values)
-    console.log(data);
+    // console.log(data);
     setLoding(false)
     localStorage.setItem('userToken' , data.token)
 setUserToken(data.token)
@@ -83,7 +42,7 @@ toast.success(data.message)
     navigate('')
 
   }catch(err){
-      console.log(err.response.data.message);
+      // console.log(err.response.data.message);
       setErrApi(err.response.data.message)
       
       setLoding(false)

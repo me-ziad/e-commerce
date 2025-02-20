@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import style from './Footer.module.css'
-import { CartContext } from '../CartContext/CartContext'
 import { UserContext } from '../../Context/UserContext'
 
 export default function Footer() {

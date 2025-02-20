@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { UserContext } from "../Context/UserContext";
 import toast from "react-hot-toast";
 
 
@@ -24,7 +23,7 @@ export default function WhishListContextProvider({children}){
         headers
     })
     toast.success(data.message)
-    console.log(data);
+    // console.log(data);
     displayWhishList()
 }catch(error){
     console.log(error);
@@ -38,7 +37,7 @@ export default function WhishListContextProvider({children}){
         let data = await axios.get('https://ecommerce.routemisr.com/api/v1/wishlist',{
             headers
         })
-        console.log(data.data);
+        // console.log(data.data);
         setShowWhishList(data.data)
     }catch(err){
             console.log(err);
@@ -55,7 +54,7 @@ export default function WhishListContextProvider({children}){
             headers
          })
          displayWhishList()
-         console.log(data);
+        //  console.log(data);
          toast.success(data.status)
          
       }catch(err){
