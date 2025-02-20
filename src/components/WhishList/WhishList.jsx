@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { WhisListContext } from '../../WhishListContext/WhishListContext'
 import { CartContext } from '../CartContext/CartContext'
-import Loader from '../Loader/loader'
 import style from '../WhishList/style.module.css'
 import { Helmet } from 'react-helmet'
 
@@ -79,7 +78,8 @@ export default function WhishList() {
                    </div>
       </>  :<>
       <div className="container h-screen flex justify-center items-center">
-              <Loader></Loader>
+      <i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
+
           </div>
 
       </>

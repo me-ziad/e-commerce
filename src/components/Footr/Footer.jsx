@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import style from './Footer.module.css'
 import { UserContext } from '../../Context/UserContext'
 
 export default function Footer() {

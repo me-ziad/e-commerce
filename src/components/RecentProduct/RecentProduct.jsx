@@ -1,8 +1,6 @@
 import React, { useContext } from 'react'
-import style from './RecentProduct'
 import axios from "axios"
 import {Link } from "react-router-dom";
-import Loader from '../Loader/loader';
 import { CartContext } from '../CartContext/CartContext';
 import {useQuery } from '@tanstack/react-query';
 import { WhisListContext } from '../../WhishListContext/WhishListContext';
@@ -28,7 +26,8 @@ export default function RecentProduct() {
   return<>
 {isLoading ?
 <div className=" flex h-screen justify-center items-center">
-<Loader></Loader>
+<i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
+
 </div>: <>
 
 

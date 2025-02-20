@@ -1,6 +1,6 @@
 import axios from "axios"
 import {useState } from "react";
-import Loader from '../Loader/loader';
+
 import { useQuery } from "@tanstack/react-query";
 import style from './Categories.module.css'
 export default function Category() {
@@ -66,7 +66,7 @@ export default function Category() {
     </> : null}
 {isLoading ?
 <div className=" flex h-screen justify-center items-center">
-<Loader></Loader>
+<i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
 </div>: <>
 
 

@@ -1,10 +1,6 @@
 import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import {NavLink, useParams } from 'react-router-dom'
-
-import Loader from '../Loader/loader';
-import { CartContext } from '../CartContext/CartContext';
-import Home from '../Home/Home';
 export default function PrandsDetails() {
 
     const [loader, setLoader] = useState(true)
@@ -38,7 +34,8 @@ export default function PrandsDetails() {
 
 {loader ?
 <div className=" flex h-screen justify-center items-center">
-<Loader></Loader>
+<i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
+
 </div>: <>
  <div className="container">
                 <div className= " lg:flex lg:items-center  p-5">
@@ -46,7 +43,7 @@ export default function PrandsDetails() {
                            <img className=' w-full' src={category.image} alt="" />
            
                             </div>
-
+                            
                             <div className=" lg:w-3/4 lg:p-5 lg:ps-20">
                             <h1 className='text-[30px]'>{category.name}</h1>
                             <p className=' text-gray-400'>{category.slug }</p>

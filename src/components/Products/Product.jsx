@@ -5,9 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../../redux/ShowProucts/ShowProducts'
 import { CartContext } from '../CartContext/CartContext';
 
-import Loader from '../Loader/loader'
-
-
 export default function Product() {
       
   let {addCart}= useContext(CartContext)
@@ -24,7 +21,8 @@ return<>
 
 {isLoading ?
 <div className=" flex h-screen justify-center items-center">
-<Loader></Loader>
+<i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
+
 </div>: <>
 
       <div className=" flex  flex-wrap gap-y-4 justify-center">

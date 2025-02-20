@@ -109,7 +109,8 @@ export default function Cart() {
         
       </>:
       <div className="container h-screen flex justify-center items-center">
-              <h1 className='text-main text-5xl '> your cart is empty</h1>
+              <i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
+
           </div>
           } 
     

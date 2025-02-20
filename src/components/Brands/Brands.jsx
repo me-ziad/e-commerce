@@ -1,13 +1,10 @@
 import axios from "axios"
 import {useState } from "react";
-import Loader from '../Loader/loader';
 import { useQuery } from "@tanstack/react-query"
 import style from './Brands.module.css'
 
 export default function prands() {
     
-  const [loader, setLoader] = useState(false)
-  const [brands, setbrands] = useState([])
   const [brandsDetails, setBrandsDetails] = useState([])
   const [showDetails, setShowDetails] = useState(false)
 
@@ -68,7 +65,8 @@ export default function prands() {
     </> : null}
 {isLoading ?
 <div className=" flex h-screen justify-center items-center">
-<Loader></Loader>
+<i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
+
 </div>: <>
       <div className=" flex  flex-wrap lg:p-6 gap-y-4 justify-center text-center">
 

@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import style from './Register.module.css'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import axios from 'axios'
@@ -12,7 +11,7 @@ export default function Register() {
 const [loding, setLoding] = useState(false)
 const [errApi, setErrApi] = useState(false)
 
-let {UserToken,setUserToken} = useContext(UserContext)
+let {setUserToken} = useContext(UserContext)
   
 
   let validationSchema = yup.object().shape({
