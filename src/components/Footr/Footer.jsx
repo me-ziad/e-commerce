@@ -19,7 +19,7 @@ let {UserToken}= useContext(UserContext)
 <p className='text-gray-500 pt-2 '>We Will Send You a Link, Open it On Your Phone to download the app  </p>
     
 <div className=" sm:w-full mb-16 flex flex-wrap gap-y-2  gap-x-3 my-2 items-center w-full">
-<input type="text" id="input" aria-label="input" className=" bg-white dark:bg-gray-500 border-gray-300 w-5/6 text-gray-900 dark:text-white text-sm rounded-lg blok  p-2.5  dark:placeholder-gray-400  focus:outline-main" placeholder='Your email address...' required   />
+<input type="text" id="input" aria-label="input" className=" bg-white dark:bg-gray-500 focus:outline-none focus:border-gray-300  focus:border-2 border-gray-300 w-5/6 text-gray-900 dark:text-white text-sm rounded-lg blok  p-2.5  dark:placeholder-gray-400 " placeholder='Your email address...' required   />
 <button type="button" className="text-white  hover:text-white hover:bg-green-500 bg-main focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-500 dark:focus:bg-green-600">Share App Link</button>
 </div>
 <div className=" border-t-2 py-5 border-b-2 dark:border-gray-600 flex flex-wrap gap-y-6 justify-between items-center ">

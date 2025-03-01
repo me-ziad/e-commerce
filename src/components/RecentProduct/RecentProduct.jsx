@@ -4,6 +4,7 @@ import {Link } from "react-router-dom";
 import { CartContext } from '../CartContext/CartContext';
 import {useQuery } from '@tanstack/react-query';
 import { WhisListContext } from '../../WhishListContext/WhishListContext';
+import Loader from '../Loader/Loader';
 export default function RecentProduct() {
     
   
@@ -20,20 +21,19 @@ export default function RecentProduct() {
       
     })
     // console.log(data?.data.data);
-    
-
-
+  
   return<>
 {isLoading ?
-<div className=" flex h-screen justify-center items-center">
-<i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
+<div className=" flex h-4/5 justify-center items-center">
+<Loader></Loader>
+{/* <i className="text-4xl lg:text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i> */}
 
 </div>: <>
 
 
       <div className=" flex  flex-wrap gap-y-4 justify-center">
         
-          {data?.data.data?.map((product)=> <div key={product.id} className="m-auto  p-2 sm:w-full md:w-1/2  lg:w-1/5">
+          {data?.data.data?.map((product)=> <div key={product.id} className="m-auto p-10  lg:p-2 w-full md:w-1/2  lg:w-1/5">
           
           <div className=" shadow-md bg-slate-100 dark:bg-slate-800 dark:text-gray-400 group overflow-hidden group  w-full  hover:border-main hover:border-[1px] hover:shadow-lg transition-all hover:border-solid rounded-sm">
 <Link to={`/productDetils/${product.id}/${product.category.name}`}>

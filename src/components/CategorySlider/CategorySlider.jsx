@@ -20,6 +20,16 @@ export default function CategorySlider() {
 
   
       };
+    var settingsSmall = {
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        arrows : false,
+      };
 
     async function categorySliderImg(){
 try{
@@ -41,13 +51,22 @@ try{
   return<>
 
   <NavLink to={'/category'}>
+  <div className="hidden lg:block">
             <Slider {...settings}>               
                         {categorys.map((category)=><div key={category._id} className='my-10'>
-                        
                                 <img src={category.image} className='w-full h-[200px] object-cover object-center' alt="" />
                         </div>
                         )}
                        </Slider>  
+  </div>
+  <div className="block lg:hidden">
+            <Slider {...settingsSmall}>               
+                        {categorys.map((category)=><div key={category._id} className='my-10'>
+                                <img src={category.image} className='w-full h-[200px] object-cover object-center' alt="" />
+                        </div>
+                        )}
+                       </Slider>  
+  </div>
                         </NavLink>
 
   </>

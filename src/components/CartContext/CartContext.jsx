@@ -13,12 +13,8 @@ export default function CartContextProvider({children}){
           token: localStorage.getItem('userToken') }
 
         const [cart, setCart] = useState(null)
-
-
-
         async function addCart(productId){
             // console.log(productId);
-            
             try{
                 let {data} =await axios.post(`https://ecommerce.routemisr.com/api/v1/cart`,{
                     productId 
@@ -29,14 +25,10 @@ export default function CartContextProvider({children}){
              displayCart()
             //    console.log(data.data);
                toast.success(data.message);
-               
-
             }catch(err){
                 console.log(err);
-                
             }
         }
-
         async function displayCart(){
             try{
                 let {data} =await axios.get(`https://ecommerce.routemisr.com/api/v1/cart`,
@@ -46,17 +38,13 @@ export default function CartContextProvider({children}){
             );
                setCart(data)
             //    console.log(data);
-
             }catch(err){
                 console.log(err);
-                
             }
         }
             useEffect(()=>{
                 displayCart()
             },[])
-
-
             async function deleteCart(id){
                 try{
                     let {data} =await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,
@@ -65,13 +53,11 @@ export default function CartContextProvider({children}){
                     }
                 );
                 setCart(data)
-    
+                toast.success(data.message);
                 }catch(err){
                     console.log(err);
                 }
             }
-            
-
             async function clearCart(){
                 try{
                     let {data} =await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart`,
@@ -80,20 +66,16 @@ export default function CartContextProvider({children}){
                     }
                 );
                 setCart(data)
+                toast.success(data.message);
     
                 }catch(err){
                     console.log(err);
                 }
             }
-            
-            
-            
-            
             async function updateCart(id,count){
                 try{
                     let {data} =await axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,
                     {
-                        
                         count
                     },{
                         headers
@@ -102,13 +84,10 @@ export default function CartContextProvider({children}){
                 setCart(data)
                 console.log(data );
                 toast.success(data.status);
-                
-    
                 }catch(err){
                     console.log(err);
                 }
             }
-        
                 return <CartContext.Provider value={ {cart, addCart,clearCart,deleteCart,updateCart,displayCart} }>
         {children}
     </CartContext.Provider>

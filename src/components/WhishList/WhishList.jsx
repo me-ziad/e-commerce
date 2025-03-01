@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { WhisListContext } from '../../WhishListContext/WhishListContext'
 import { CartContext } from '../CartContext/CartContext'
-import style from '../WhishList/style.module.css'
 import { Helmet } from 'react-helmet'
+import Loader from '../Loader/Loader'
 
 export default function WhishList() {
 
@@ -14,18 +14,18 @@ export default function WhishList() {
       {showWhishList ? <> 
 
         <Helmet>
-                <title>whishlist</title>
+                <title>Whishlist</title>
                 <link rel="canonical" href="http://mysite.com/example" />
             </Helmet>
       
         
                    <div className="container">
-                       <h1 className={`${style.styleHeader} text-3xl ms-4 mb-10 mt-5 text-main`}> My Whish List</h1>
-                       <div className="flex justify-center lg:justify-start gap-y-6 flex-wrap">        
+                       <h1 className="text-gray-500 dark:text-gray-400 text-xl lg:text-xl px-10 font-semibold mb-4 "> My Whish List</h1>
+                       <div className="flex justify-center m-auto lg:justify-start gap-y-6 flex-wrap">        
                            {showWhishList.data?.map((product,index)=> <>
                            
-       <div key={index} className=" px-3">
-       <div className="w-full max-w-sm bg-gray-100 hover:shadow-main dark:bg-gray-800 dark:text-white hover:border-main border border-gray-100 rounded-lg  transition-all duration-500 shadow-sm dark:border-gray-700">
+       <div key={index} className=" px-3 w-full md:w-1/2 lg:w-1/3">
+       <div className=" bg-gray-100 hover:shadow-main dark:bg-gray-800 dark:text-white hover:border-main border border-gray-100 rounded-lg  transition-all duration-500 shadow-sm dark:border-gray-700">
        
            <img className="p-8 rounded-t-lg" src={product.imageCover} alt="product image" />
        
@@ -52,7 +52,7 @@ export default function WhishList() {
              </svg>
            </div>
            <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">{product.ratingsAverage}</span>
-           <button onClick={()=>deleteWhishList(product.id)} className="font-medium ms-auto me-8 text-red-600 dark:text-red-500 hover:underline">Remove</button>
+           <button onClick={()=>deleteWhishList(product.id)} className="font-medium ms-auto lg:me-8 text-red-600 dark:text-red-500 hover:underline"><i className="fa-solid me-2 fa-trash"></i>Remove</button>
          </div>
          <div className="flex items-center justify-between">
            <div className=" flex">
@@ -63,7 +63,7 @@ export default function WhishList() {
           </>  :     <span className="text-1xl dark:text-white text-gray-900 font-medium">{product.price}  EGP</span>}
            </div>
            <div className=" flex flex-col mb-2  ">
-           <button onClick={()=>addCart(product.id)} className="text-white mt-3 bg-main mb-2 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-500">+ Add to cart</button>
+           <button onClick={()=>addCart(product.id)} className="text-white mt-3 bg-main mb-2 hover:bg-green-400 focus:bg-green-400 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-500">+ Add to cart</button>
        
            </div>   
          </div>
@@ -77,9 +77,8 @@ export default function WhishList() {
                        </div>
                    </div>
       </>  :<>
-      <div className="container h-screen flex justify-center items-center">
-      <i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
-
+      <div className="container h-4/5 flex justify-center items-center">
+            <Loader></Loader>
           </div>
 
       </>

@@ -56,7 +56,7 @@ const formik = useFormik({
   return <>
   
 
-<form onSubmit={formik.handleSubmit} className=" md:w-4/6 mx-auto mb-40 mt-24">
+<form onSubmit={formik.handleSubmit} className=" md:w-4/6 px-4 lg:px-0 mx-auto mb-40 mt-24">
   <h2 className=' font-medium text-2xl mb-8 text-main uppercase'>Login</h2>
 
 
@@ -95,8 +95,8 @@ const formik = useFormik({
         <Link to={'/forgetPassword'} className=' text-main text-sm'> forget your password ?</Link>
 </div>
 
-    {!laoding ?  <button type="submit" className="text-white bg-main hover:bg-green-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-600 dark:focus:main">Submit</button>
-:   <button type="button" className="text-white bg-main hover:bg-green-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-600 dark:focus:main"><i className="fa-solid fa-spinner fa-spin"></i></button>
+    {!laoding ?  <button type="submit" className="text-white bg-main hover:bg-green-400  focus:outline-none focus:bg-green-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-600 dark:focus:main">Submit</button>
+:   <button type="button" className="text-white bg-main hover:bg-green-400  focus:outline-none focus:bg-green-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-600 dark:focus:main"><i className="fa-solid fa-spinner fa-spin"></i></button>
 }
 
 </form>

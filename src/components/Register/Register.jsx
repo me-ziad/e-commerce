@@ -5,7 +5,6 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../Context/UserContext'
 
-
 export default function Register() {
 
 const [loding, setLoding] = useState(false)
@@ -61,9 +60,8 @@ initialValues :{
 })
 
   return <>
-  
 
-<form onSubmit={formik.handleSubmit} className=" md:w-4/6 mx-auto mt-24">
+<form onSubmit={formik.handleSubmit} className=" md:w-4/6 px-4 lg:px-0 mx-auto mt-24">
   <h2 className=' font-medium text-2xl mb-8 text-main uppercase'>Register</h2>
 
        {errApi &&  <div className="px-4 py-1 mb-4 text-sm text-red-900 rounded-lg bg-red-50 dark:bg-red-200 transform -translate-y-4 dark:text-red-900" role="alert">
@@ -130,8 +128,8 @@ initialValues :{
   </div>
     
 
-    {!loding ?  <button type="submit" className="text-white bg-main hover:bg-green-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-600 dark:focus:main">Submit</button>
-:   <button type="button" className="text-white bg-main hover:bg-green-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-600 dark:focus:main"><i className="fa-solid fa-spinner fa-spin"></i></button>
+    {!loding ?  <button type="submit" className="text-white bg-main hover:bg-green-500 focus:outline-none focus:bg-green-500 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-500 dark:focus:main">Submit</button>
+:   <button type="button" className="text-white bg-main hover:bg-green-500 focus:outline-none focus:bg-green-500 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-600 dark:focus:main"><i className="fa-solid fa-spinner fa-spin"></i></button>
 }
 
 </form>
