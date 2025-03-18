@@ -48,7 +48,7 @@ let navigate =useNavigate()
   
   
 
-<form onSubmit={formik.handleSubmit} className=" md:w-4/6 mx-auto mb-40 mt-24">
+<form onSubmit={formik.handleSubmit} className=" md:w-4/6 shadow-md lg:p-7 p-4 mx-auto mb-40 mt-24">
   <h2 className=' font-medium text-2xl mb-8 text-main'>Forget Password</h2>
 
 

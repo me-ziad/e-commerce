@@ -17,29 +17,28 @@ export default function Navbar() {
   let {showWhishList}= useContext(WhisListContext)
   let {cart} = useContext(CartContext)
 
-  // let body = document.body
-  useEffect(()=>{
-    if(localStorage.getItem('darkMood')){
-     document.body.classList.add('dark')   
-       document.body.style.backgroundColor = '#030712'
-       ref.current?.checked === true
-    }
-  },[])
-
-  function toggleMe(){
-      let body = document.body
-      if(ref.current?.checked){
-        body.classList.add('dark')
-        body.style.backgroundColor = '#030712'
-        localStorage.setItem('darkMood' , 'dark')
-      }else{
-        body.classList.remove('dark')
-        body.style.backgroundColor = 'white'
-       localStorage.removeItem('darkMood')
+    useEffect(() => {
+      ref.current?.checked === true;
+      if (localStorage.getItem('darkMood')) {
+        document.body.classList.add('dark');
+        document.body.style.backgroundColor = '#030712';
+        ref.current?.checked === true;
       }
-      
-      
+    }, []);
+  
+    function toggleMe() {
+      let body = document.body;
+      if (ref.current.checked === true) {
+        body.classList.add('dark');
+        body.style.backgroundColor = '#030712';
+        localStorage.setItem('darkMood', 'dark');
+      } else {
+        body.classList.remove('dark');
+        body.style.backgroundColor = '#eeee';
+        localStorage.removeItem('darkMood');
+      }
     }
+
   function deleteToken(){
     // console.log('deleteToken');
     localStorage.removeItem('userToken');
@@ -141,11 +140,11 @@ className="fixed text-center border-gray-400 dark:border-gray-700  border-solid 
               <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600" />
               <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
             </label>
-                  <span onClick={()=>{deleteToken()}} className="text-sm/6 font-semibold hover:cursor-pointer hover:text-main lg:translate-y-1 dark:text-gray-400 text-gray-500">Log out_<i className="fa-solid fa-arrow-right-from-bracket text-main"></i></span>  
+                  <span onClick={()=>{deleteToken()}} className="text-sm/6 font-semibold hover:cursor-pointer hover:text-main lg:translate-y-1 dark:text-gray-400 text-gray-500">Log_Out_<i className="fa-solid fa-arrow-right-from-bracket text-main"></i></span>  
                         </div>  :<>
             <div className="hidden lg:flex lg:flex-1 lg:items-center lg:gap-x-3 lg:justify-end">
                 <NavLink to={'register'} className="text-sm/6 font-semibold rounded-md py-1 dark:text-gray-400 ">Register </NavLink>
-                <NavLink to={'login'} className="text-sm/6 font-semibold rounded-md py-1 px-3  dark:text-gray-400 text-black">Log in <span aria-hidden="true">→</span></NavLink>
+                <NavLink to={'login'} className="text-sm/6 font-semibold rounded-md py-1 px-3  dark:text-gray-400 text-black">Login <span aria-hidden="true">→</span></NavLink>
                 </div>
                   </>
               
@@ -160,10 +159,8 @@ className="fixed text-center border-gray-400 dark:border-gray-700  border-solid 
             <div className=" flex justify-between w-full items-center mt-3">
             <Link to={''} className="-m-1.5 p-1.5">
                         <img className=" w-[150px]" src={logo} alt='' />
-                        </Link>
-                  
+                    </Link>                  
             </div>
-
                 <button onClick={()=>{setOpen(false)}} type="button" className="-m-2.5 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-400 rounded-md p-2.5 dark:text-gray-500 text-gray-700">
                   <span className="sr-only">Close menu</span>
 
@@ -178,8 +175,8 @@ className="fixed text-center border-gray-400 dark:border-gray-700  border-solid 
                       {UserToken &&
                       
                         <div className="space-y-2 flex-col flex py-6">
-                          <NavLink to={''} className="-mx-3 block rounded-lg  py-3 text-base/7  font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Home</NavLink>
-                          <NavLink to={'whishList'} className="text-sm/6 font-semibold  text-gray-500">
+                          <NavLink onClick={()=>{setOpen(false)}}  to={''} className="-mx-3 block rounded-lg  py-3 text-base/7  font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Home</NavLink>
+                          <NavLink onClick={()=>{setOpen(false)}}  to={'whishList'} className="text-sm/6 font-semibold  text-gray-500">
                     
             <button type="button" className="relative inline-flex items-center  text-sm font-medium text-center text-white rounded-lg hover:scale-110 transition-all  focus:outline-none ">
             <span className="sr-only">Notifications</span>
@@ -187,20 +184,20 @@ className="fixed text-center border-gray-400 dark:border-gray-700  border-solid 
                     <i className=" fa-regular text-2xl fa-heart text-main mb-2 lg:translate-x-3 "></i>
             </button>
                       </NavLink>
-                    <NavLink to={'cart'} className="text-sm/6  py-3 font-semibold  text-gray-500">
+                    <NavLink onClick={()=>{setOpen(false)}}  to={'cart'} className="text-sm/6  py-3 font-semibold  text-gray-500">
                     
-            <button type="button" className="relative inline-flex items-center  text-sm font-medium text-center text-white  rounded-lg hover:scale-110 transition-all  focus:outline-none ">
+            <button onClick={()=>{setOpen(false)}}  type="button" className="relative inline-flex items-center  text-sm font-medium text-center text-white  rounded-lg hover:scale-110 transition-all  focus:outline-none ">
             <span className="sr-only">Notifications</span>
               <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-main border-2 border-white rounded-full -top-2 -end-2 ">{cart?.numOfCartItems}</div>
                     <i className=" fa-solid text-2xl fa-cart-shopping text-main "></i>        
             </button>
                       </NavLink>
 
-                          <NavLink to={'category'} className="-mx-3 block rounded-lg px-3 py-3 text-base/7 font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Category</NavLink>
-                          <NavLink to={'brands'} className="-mx-3 block rounded-lg px-3 py-3 text-base/7 font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Brands</NavLink>
-                          <NavLink to={'products'} className="-mx-3 block rounded-lg px-3 py-3 text-base/7 font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Products</NavLink>
+                          <NavLink onClick={()=>{setOpen(false)}}  to={'category'} className="-mx-3 block rounded-lg px-3 py-3 text-base/7 font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Category</NavLink>
+                          <NavLink onClick={()=>{setOpen(false)}}  to={'brands'} className="-mx-3 block rounded-lg px-3 py-3 text-base/7 font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Brands</NavLink>
+                          <NavLink onClick={()=>{setOpen(false)}}  to={'products'} className="-mx-3 block rounded-lg px-3 py-3 text-base/7 font-semibold text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400 hover:bg-gray-50">Products</NavLink>
 
-                          <div className=' flex justify-between w-2/5 m-auto '>
+                          <div onClick={()=>{setOpen(false)}}  className=' flex justify-between w-2/5 m-auto '>
                             <i className="fa-brands dark:text-gray-400  hover:text-blue-700 hover:cursor-pointer fa-facebook  text-xl" />
                             <i className="fa-brands dark:text-gray-400 hover:text-blue-600 hover:cursor-pointer fa-linkedin text-xl" />
                               <i className="fa-brands dark:text-gray-400 hover:text-gray-600 hover:cursor-pointer fa-github text-xl" />
@@ -210,12 +207,12 @@ className="fixed text-center border-gray-400 dark:border-gray-700  border-solid 
                       }
                         {UserToken ?<>
                         <div className="py-6">
-                          <span onClick={()=>{deleteToken()}} className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  dark:text-gray-400  text-gray-900 dark:hover:bg-gray-800 hover:bg-gray-50">Log out_<i className="fa-solid ms-2 fa-arrow-right-from-bracket text-main"></i></span></div>
+                          <span onClick={()=>{deleteToken()}} className="-mx-3 cursor-pointer block rounded-lg px-3 py-2.5 text-base/7 font-semibold  dark:text-gray-400  text-gray-900 dark:hover:bg-gray-800 hover:bg-gray-50">Log out_<i className="fa-solid ms-2 fa-arrow-right-from-bracket text-main"></i></span></div>
                         </>:
                           <>
                           <div className="py-6">
-                          <NavLink to={'register'} className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  dark:text-gray-400 text-gray-900 hover:bg-gray-50">Register</NavLink>
-                          <NavLink to={'login'} className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  dark:text-gray-400  text-black hover:bg-gray-50">Log in</NavLink>
+                          <NavLink onClick={()=>{setOpen(false)}}  to={'register'} className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  dark:text-gray-400 text-gray-900 hover:bg-gray-50">Register</NavLink>
+                          <NavLink onClick={()=>{setOpen(false)}}  to={'login'} className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  dark:text-gray-400  text-black hover:bg-gray-50">Login</NavLink>
                           <div className=" flex items-center gap-x-4 mt-4 lg:me-3 lg:mt-1">
                           </div>
                         </div>

@@ -61,7 +61,7 @@ initialValues :{
 
   return <>
 
-<form onSubmit={formik.handleSubmit} className=" md:w-4/6 px-4 lg:px-0 mx-auto mt-24">
+<form onSubmit={formik.handleSubmit} className=" md:w-4/6 shadow-md p-4 lg:p-7 mx-auto mt-24">
   <h2 className=' font-medium text-2xl mb-8 text-main uppercase'>Register</h2>
 
        {errApi &&  <div className="px-4 py-1 mb-4 text-sm text-red-900 rounded-lg bg-red-50 dark:bg-red-200 transform -translate-y-4 dark:text-red-900" role="alert">

@@ -85,7 +85,7 @@ export default function ProductDetails() {
 
 </div>: <>
  <div className="container">
-                <div className= " lg:flex lg:items-center dark:text-gray-300  p-5">
+                <div className= " lg:flex rounded-lg shadow-xl border lg:items-center dark:text-gray-300  p-5">
                             <div className="  lg:w-1/4">
                             <Slider {...settings}>
                           {products.images.map((image,indix)=> <img key={indix} className=' w-full' src={image} alt="" />)}
@@ -96,8 +96,8 @@ export default function ProductDetails() {
                 <title>{products.title}</title>
                 <link rel="canonical" href="http://mysite.com/example" />
             </Helmet>
-                            <div className=" lg:w-3/4 lg:p-5 lg:ps-20">
-                            <h1 className='text-[30px]'>{products.title}</h1>
+                            <div className=" lg:w-3/4 lg:p-5  lg:ps-20">
+                            <h1 className='lg:text-[30px] text-[20px] mt-6 lg:mt-0'>{products.title}</h1>
                             <p className=' text-gray-400'>{products.description }</p>
                                         <div className=" flex justify-between items-center mt-4">
                                           <div className=" flex flex-col">

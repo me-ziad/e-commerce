@@ -56,7 +56,7 @@ const formik = useFormik({
   return <>
   
 
-<form onSubmit={formik.handleSubmit} className=" md:w-4/6 px-4 lg:px-0 mx-auto mb-40 mt-24">
+<form onSubmit={formik.handleSubmit} className=" md:w-4/6 lg:p-7 p-4 shadow-md  rounded-md mx-auto mb-40 mt-24">
   <h2 className=' font-medium text-2xl mb-8 text-main uppercase'>Login</h2>
 
 

@@ -77,6 +77,7 @@ export default function Cart() {
               </td>
             </tr>
         )}
+     
           </tbody>
         </table>
             <div className=" w-full ps-10 lg:ps-0 py-6 lg:flex-row flex justify-center lg:justify-around flex-col">

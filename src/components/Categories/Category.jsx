@@ -1,10 +1,10 @@
 import axios from "axios"
 import {useState } from "react";
-
 import { useQuery } from "@tanstack/react-query";
 import style from './Categories.module.css'
 import {motion} from 'framer-motion' 
 import Loader from "../Loader/Loader";
+import { FadeIn } from "../Variants";
 
 export default function Category() {
     
@@ -83,9 +83,9 @@ export default function Category() {
                 </div>: <>
                   <div className=" flex  flex-wrap lg:p-6 gap-y-4 justify-start text-center">
                     
-                      {data?.data?.data.map((cat)=> <div key={cat._id} className="m-auto p-10 lg:p-2 w-full md:w-1/2  lg:w-1/3">
+                      {data?.data?.data.map((cat)=> <div onClick={()=>PrandsDetails(cat._id)}  key={cat._id} className="m-auto cursor-pointer p-4 lg:p-2 w-full md:w-1/2  lg:w-1/3">
                       
-                      <div  className=" shadow-md overflow-hidden bg-slate-100 dark:bg-gray-900  group  w-full  hover:border-main hover:shadow-main hover:shadow-sm duration-500 transition-all rounded-sm">
+                      <div className=" shadow-md overflow-hidden bg-slate-100 dark:bg-gray-900  group  w-full  hover:border-main hover:shadow-main hover:shadow-sm duration-500 transition-all rounded-sm">
                         <img className="w-full  h-[230px] object-cover" src={cat.image} alt="" />
                         <div className=" p-2 lg:px-3">
 

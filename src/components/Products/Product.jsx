@@ -23,8 +23,8 @@ return<>
             <div className=" flex mt-40 h-3/4 justify-center items-center">
                 <Loader></Loader>
                         </div>: <>
-                        <div className=" flex  flex-wrap gap-y-4 justify-center">
-                            {product.map((product)=> <div key={product.id} className="m-auto p-10 lg:p-2 w-full md:w-1/2  lg:w-1/5">
+                        <div className=" flex  flex-wrap gap-y-2 justify-center">
+                            {product.map((product)=> <div key={product.id} className="m-auto p-3 lg:p-2 w-full md:w-1/2  lg:w-1/5">
                             <div className=" shadow-md group overflow-hidden group dark:bg-slate-800 dark:text-gray-400  w-full p-3 hover:border-main hover:border-[1px] hover:shadow-lg transition-all hover:border-solid rounded-sm">
                     <Link to={`/productDetils/${product.id}/${product.category.name}`}>
                                 <img className="w-full  h-[300px] object-cover" src={product.imageCover} alt="" />

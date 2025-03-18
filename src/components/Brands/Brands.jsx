@@ -88,9 +88,9 @@ export default function prands() {
 </div>: <>
       <div className=" flex  flex-wrap lg:p-6 gap-y-4 justify-center text-center">
 
-          {data?.data?.data.map((prand)=> <div key={prand._id} className="m-auto  dark:text-gray-200 p-7 lg:p-2 w-full md:w-1/2  lg:w-1/4">
+          {data?.data?.data.map((prand)=> <div  onClick={()=>PrandsDetails(prand._id)}  key={prand._id} className="m-auto hover:cursor-pointer  dark:text-gray-200 p-4 lg:p-2 w-full md:w-1/2  lg:w-1/4">
 
-          <div  className=" border group dark:text-gray-200  w-full dark:bg-gray-900   hover:shadow-main hover:border-[1px] overflow-hidden hover:border-main hover:shadow-sm  duration-500 transition-all rounded-sm">
+          <div  className=" border dark:border-gray-600 group dark:text-gray-200  w-full dark:bg-gray-900 bg-white  hover:shadow-main hover:border-[1px] overflow-hidden hover:border-main hover:shadow-sm  duration-500 transition-all rounded-sm">
             <img className="w-full  h-[200px] object-center" src={prand.image} alt="" />
             <div className=" px-3">
 
