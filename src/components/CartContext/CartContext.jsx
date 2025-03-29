@@ -53,9 +53,11 @@ export default function CartContextProvider({children}){
                     }
                 );
                 setCart(data)
-                toast.success(data.message);
+                toast.success('delete product succss');
                 }catch(err){
                     console.log(err);
+                    toast.error('faild delete product');
+
                 }
             }
             async function clearCart(){
@@ -70,6 +72,8 @@ export default function CartContextProvider({children}){
     
                 }catch(err){
                     console.log(err);
+                    toast.error('try another time...');
+
                 }
             }
             async function updateCart(id,count){
@@ -86,6 +90,8 @@ export default function CartContextProvider({children}){
                 toast.success(data.status);
                 }catch(err){
                     console.log(err);
+                    toast.error('try another time...');
+
                 }
             }
                 return <CartContext.Provider value={ {cart, addCart,clearCart,deleteCart,updateCart,displayCart} }>

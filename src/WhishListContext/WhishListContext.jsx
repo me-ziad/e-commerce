@@ -26,7 +26,9 @@ export default function WhishListContextProvider({children}){
     // console.log(data);
     displayWhishList()
 }catch(error){
-    console.log(error);
+    // console.log(error);
+    toast.error('failed ')
+    
 }
     }
 
@@ -59,7 +61,7 @@ export default function WhishListContextProvider({children}){
          
       }catch(err){
         console.log(err);
-        
+        toast.error('failed to delete...')
       }
     }
 

@@ -82,7 +82,7 @@ export default function Navbar() {
   initial = "hidden"
   animate = "visible"
 className="fixed text-center border-gray-400 dark:border-gray-700  border-solid border-b   inset-x-0 top-0 z-40  bg-slate-200">
-    <nav className= {`${ isScrolling === true ? 'py-3': 'py-5'} flex items-center transition-[padding] duration-500  px-6  dark:bg-gray-900 lg:px-8" aria-label="Global` } >
+    <nav className= {`${ isScrolling === true ? 'py-3': 'py-3.5'} flex items-center transition-[padding] duration-500  px-6  dark:bg-gray-900 lg:px-8" aria-label="Global` } >
       <div className=" flex items-center">
         <Link to={''} className="">
           <img className=" w-[150px]" src={logo} alt='' />
