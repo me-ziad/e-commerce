@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
-import React from 'react'
+import React, { lazy } from 'react'
 import Layout from './components/Layout/Layout'
-import Home from './components/Home/Home'
-import Cart from './components/Cart/Cart'
-import Category from './components/Categories/Category'
-import Brands from './components/Brands/Brands'
-import Product from './components/Products/Product'
+const Home = lazy(()=> import('./components/Home/Home'))
+const Cart = lazy(()=> import('./components/Cart/Cart'))
+const Category = lazy(()=> import('./components/Categories/Category'))
+const Brands = lazy(()=> import('./components/Brands/Brands'))
+const Product = lazy(()=> import('./components/Products/Product'))
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
 import NotFound from './components/NotFound/NotFound'
@@ -21,17 +21,17 @@ QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { store } from './redux/store'
-import PayCash from './components/PayCash/PayCash'
-import PayVisa from './components/PayVisa/PayVisa'
-import AllOrders from './components/AllOrders/AllOrders'
-import PaySuccess from './components/PaySuccsess/PaySuccess'
-import ForgetPassword from './components/ForgetPassword/ForgetPassword'
+const PayCash = lazy(()=> import('./components/PayCash/PayCash'))
+const PayVisa = lazy(()=> import('./components/PayVisa/PayVisa'))
+const AllOrders = lazy(()=> import('./components/AllOrders/AllOrders'))
+const PaySuccess = lazy(()=> import('./components/PaySuccsess/PaySuccess'))
+const ForgetPassword = lazy(()=> import('./components/ForgetPassword/ForgetPassword'))
 import SendCode from './components/SendCode/SendCode'
 import NewPass from './components/NewPass/NewPass'
-import CategoryDetails from './components/CategoryDetails/CategoryDetails'
+const CategoryDetails = lazy(()=> import('./components/CategoryDetails/CategoryDetails'))
 import WhishListContextProvider from './WhishListContext/WhishListContext'
 import { Offline } from "react-detect-offline";
-import WhishList from './components/WhishList/WhishList'
+const WhishList = lazy(()=> import('./components/WhishList/WhishList'))
 
 function App() {
 

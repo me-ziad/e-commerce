@@ -15,12 +15,13 @@ let navigate =useNavigate()
     setLoading(true)
     let data = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode',values)
     // console.log(data);
-    toast.success(data.status)
+
     navigate('/rePass')
 
   }catch(err){
       console.log(err);
       setLoading(false)
+      toast.error('try agine...')
     }finally{
       setLoading(false)
     }
