@@ -4,6 +4,7 @@ import * as yup from 'yup'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../Context/UserContext'
+import toast from "react-hot-toast";
 
 export default function Register() {
 
@@ -37,7 +38,7 @@ let {setUserToken} = useContext(UserContext)
     localStorage.setItem('userToken' , data.token)
 setUserToken(data.token)
 toast.success(data.message)
-    navigate('')
+    navigate('/')
 
   }catch(err){
       // console.log(err.response.data.message);
