@@ -29,9 +29,9 @@ export default function WhishList() {
                             </div>
                              : (
                                 showWhishList.data?.map((product, index) => (
-                                    <div key={index} className="px-3 w-full md:w-1/2 lg:w-1/3">
+                                    <div key={index} className="px-3 w-full md:w-1/2 lg:w-1/4">
                                         <div className="bg-gray-100 hover:shadow-main dark:bg-gray-800 dark:text-white hover:border-main border border-gray-100 rounded-lg transition-all duration-500 shadow-sm dark:border-gray-700">
-                                            <img className="p-8 rounded-t-lg" src={product.imageCover} alt="product image" />
+                                            <img className="p-8 w-full rounded-t-lg" src={product.imageCover} alt="product image" />
                                             <div className="px-5">
                                                 <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                                                     {product.title.split(' ', 5).join(' ')}
@@ -40,7 +40,7 @@ export default function WhishList() {
                                                     <div className="flex items-center space-x-1 rtl:space-x-reverse">
                                                         {/* Add your rating stars SVGs here */}
                                                     </div>
-                                                    <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">
+                                                    <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ">
                                                         {product.ratingsAverage}
                                                     </span>
                                                     <button
@@ -58,12 +58,12 @@ export default function WhishList() {
                                                                     <del>{product.price}EGP</del>
                                                                 </span>
                                                                 <span className="text-1xl text-gray-900 dark:text-white font-medium">
-                                                                    {product.priceAfterDiscount} EGP
+                                                                    {product.priceAfterDiscount}EGP
                                                                 </span>
                                                             </>
                                                         ) : (
                                                             <span className="text-1xl dark:text-white text-gray-900 font-medium">
-                                                                {product.price} EGP
+                                                                {product.price}EGP
                                                             </span>
                                                         )}
                                                     </div>

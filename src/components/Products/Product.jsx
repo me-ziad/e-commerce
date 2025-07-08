@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../../redux/ShowProucts/ShowProducts'
 import { CartContext } from '../CartContext/CartContext';
+import { WhisListContext } from '../../WhishListContext/WhishListContext';
 import Loader from '../Loader/Loader';
 
 export default function Product() {
+      const { postWhishList } = useContext(WhisListContext);
       
   let {addCart}= useContext(CartContext)
     let {product,isLoading} = useSelector((store)=> store.productReducer)
@@ -35,7 +37,13 @@ return<>
                                     <span className=' text-yellow-400'>{product.ratingsAverage}<i className="fa-solid fa-star ms-2"></i></span>
                                 </div>
                         </Link>
-                                <button onClick={()=>{addCart(product.id)}} className='w-full text-center hover:bg-green-400 group-hover:translate-y-0 translate-y-full duration-500 group-hover:opacity-100 pt-2 pb-2 ps-4 pe-4 opacity-0 bg-main text-white mt-6 rounded'>Add Cart</button>
+                             <div className="flex justify-end">
+                    <i
+                      onClick={() => postWhishList(product.id)}
+                      className="cursor-pointer text-2xl me-5 mt-3 fa-regular fa-heart text-red-600 ms-auto"
+                    ></i>
+                  </div>
+                                <button onClick={()=>{addCart(product.id)}} className='w-full text-center hover:bg-green-400 group-hover:translate-y-0 translate-y-full duration-500 group-hover:opacity-100 pt-2 pb-2 ps-4 pe-4 opacity-0 bg-main text-white mt-6 rounded'>Add Cart +</button>
                             </div>
                                 </div>
                             )}        

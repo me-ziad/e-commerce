@@ -2,70 +2,66 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
+export const WhisListContext = createContext();
 
-export let WhisListContext = createContext()
+export default function WhishListContextProvider({ children }) {
+  const headers = {
+    token: localStorage.getItem("userToken"),
+  };
 
-export default function WhishListContextProvider({children}){
-    
-    let headers = {
-        token: localStorage.getItem('userToken'),
+  const [showWhishList, setShowWhishList] = useState([]);
+
+  async function postWhishList(productId) {
+    try {
+      const { data } = await axios.post(
+        "https://ecommerce.routemisr.com/api/v1/wishlist",
+        { productId },
+        { headers }
+      );
+      toast.success(data.message || "Added to wishlist successfully");
+      displayWhishList();
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Failed to add to wishlist");
+      console.error("Add to wishlist error:", error);
     }
-    const [showWhishList, setShowWhishList] = useState([])
-    
-   
+  }
 
+  async function displayWhishList() {
+    try {
+      const { data } = await axios.get(
+        "https://ecommerce.routemisr.com/api/v1/wishlist",
+        { headers }
+      );
+      setShowWhishList(data);
+    } catch (error) {
+      toast.error("Failed to fetch wishlist");
+      console.error("Fetch wishlist error:", error);
+    }
+  }
 
-    async function postWhishList(productId){
-    try{
-    let {data} = await axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,{
-        productId
-    },{
-        headers
-    })
-    toast.success(data.message)
-    // console.log(data);
-    displayWhishList()
-}catch(error){
-    // console.log(error);
-    toast.error('failed ')
-    
+  async function deleteWhishList(id) {
+    try {
+      const { data } = await axios.delete(
+        `https://ecommerce.routemisr.com/api/v1/wishlist/${id}`,
+        { headers }
+      );
+      toast.success(data.message || "Item removed from wishlist");
+      displayWhishList();
+    } catch (error) {
+      toast.error("Failed to delete item from wishlist");
+      console.error("Delete wishlist error:", error);
+    }
+  }
+
+  useEffect(() => {
+    displayWhishList();
+  }, []);
+
+  return (
+    <WhisListContext.Provider
+      value={{ postWhishList, showWhishList, deleteWhishList }}
+    >
+      {children}
+    </WhisListContext.Provider>
+  );
 }
-    }
-
-
-    async function displayWhishList(){
-
-    try{
-        let data = await axios.get('https://ecommerce.routemisr.com/api/v1/wishlist',{
-            headers
-        })
-        // console.log(data.data);
-        setShowWhishList(data.data)
-    }catch(err){
-            console.log(err);
-    }
-    }
-    useEffect(()=>{
-        displayWhishList()
-    },[])
-
-
-    async function deleteWhishList(id){
-      try{
-        let {data} =  await axios.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${id}` ,{
-            headers
-         })
-         displayWhishList()
-        //  console.log(data);
-         toast.success(data.status)
-         
-      }catch(err){
-        console.log(err);
-        toast.error('failed to delete...')
-      }
-    }
-
-    return <WhisListContext.Provider value={{postWhishList,showWhishList,deleteWhishList}}>
-
-    {children} </WhisListContext.Provider>
-}   

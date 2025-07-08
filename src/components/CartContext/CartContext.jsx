@@ -1,101 +1,78 @@
-
 import axios from "axios"
 import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
+export const CartContext = createContext();
 
-export const CartContext = createContext()
+export default function CartContextProvider({ children }) {
+  const headers = {
+    token: localStorage.getItem('userToken')
+  };
 
+  const [cart, setCart] = useState(null);
 
-export default function CartContextProvider({children}){
+  async function addCart(productId) {
+    try {
+      const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/cart`, { productId }, { headers });
+      toast.success(data.message || 'Added to cart'
+);
+      displayCart();
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.response?.data?.message || 'Failed to add product to cart');
+    }
+  }
 
-        const headers ={
-          token: localStorage.getItem('userToken') }
+  async function displayCart() {
+    try {
+      const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/cart`, { headers });
+      setCart(data);
+    } catch (err) {
+      console.log(err);
+      toast.error('Failed to load basket');
+    }
+  }
 
-        const [cart, setCart] = useState(null)
-        async function addCart(productId){
-            // console.log(productId);
-            try{
-                let {data} =await axios.post(`https://ecommerce.routemisr.com/api/v1/cart`,{
-                    productId 
-                },{
-                    headers
-                }
-            );
-             displayCart()
-            //    console.log(data.data);
-               toast.success(data.message);
-            }catch(err){
-                console.log(err);
-            }
-        }
-        async function displayCart(){
-            try{
-                let {data} =await axios.get(`https://ecommerce.routemisr.com/api/v1/cart`,
-                {
-                    headers
-                }
-            );
-               setCart(data)
-            //    console.log(data);
-            }catch(err){
-                console.log(err);
-            }
-        }
-            useEffect(()=>{
-                displayCart()
-            },[])
-            async function deleteCart(id){
-                try{
-                    let {data} =await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,
-                    {
-                        headers
-                    }
-                );
-                setCart(data)
-                toast.success('delete product succss');
-                }catch(err){
-                    console.log(err);
-                    toast.error('faild delete product');
+  async function deleteCart(id) {
+    try {
+      const { data } = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`, { headers });
+      setCart(data);
+      toast.success('The product has been removed from the cart');
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.response?.data?.message || 'Failed to delete product');
+    }
+  }
 
-                }
-            }
-            async function clearCart(){
-                try{
-                    let {data} =await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart`,
-                    {
-                        headers
-                    }
-                );
-                setCart(data)
-                toast.success(data.message);
-    
-                }catch(err){
-                    console.log(err);
-                    toast.error('try another time...');
+  async function clearCart() {
+    try {
+      const { data } = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart`, { headers });
+      setCart(data);
+      toast.success(data.message || 'The basket has been cleared');
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.response?.data?.message || 'Failed to clear basket');
+    }
+  }
 
-                }
-            }
-            async function updateCart(id,count){
-                try{
-                    let {data} =await axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,
-                    {
-                        count
-                    },{
-                        headers
-                    }
-                );
-                setCart(data)
-                console.log(data );
-                toast.success(data.status);
-                }catch(err){
-                    console.log(err);
-                    toast.error('try another time...');
+  async function updateCart(id, count) {
+    try {
+      const { data } = await axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${id}`, { count }, { headers });
+      setCart(data);
+      toast.success('Updated successfully');
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.response?.data?.message || 'Failed to update quantity');
+    }
+  }
 
-                }
-            }
-                return <CartContext.Provider value={ {cart, addCart,clearCart,deleteCart,updateCart,displayCart} }>
-        {children}
+  useEffect(() => {
+    displayCart();
+  }, []);
+
+  return (
+    <CartContext.Provider value={{ cart, addCart, clearCart, deleteCart, updateCart, displayCart }}>
+      {children}
     </CartContext.Provider>
+  );
 }
-
