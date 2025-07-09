@@ -68,7 +68,7 @@ export default function Category() {
                 <h4 className=" text-sm text-gray-600">{categoryDetails.slug}</h4>
               </div>
               <div className="w-1/2">
-                <img src={categoryDetails.image} className="w-full" alt="" />
+                <img src={categoryDetails.image} className="w-4/5" alt="" />
               </div>
                 </div>
                 <div className=" flex w-ful translate-y-3 justify-end me-4">

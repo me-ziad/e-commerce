@@ -38,13 +38,19 @@ export default function RecentProduct() {
                     <div className="px-3">
                       <h3 className="text-main mt-3">{product.category.name}</h3>
                       <h3 className="text-xl">{product.title.split(' ', 2).join(' ')}</h3>
-                      <div className="flex justify-between items-center mt-4">
-                        <span>{product.price} {t('EGY')}</span>
-                        <span className="text-yellow-400">
-                          {product.ratingsAverage}
-                          <i className="fa-solid fa-star ms-2"></i>
-                        </span>
-                      </div>
+                    <div className="flex justify-between items-center mt-4">
+            <span>{product.price} {t('EGY')}</span>
+
+                  <span className="text-yellow-400 flex items-center">
+                    {Array.from({ length: Math.round(product.ratingsAverage) }).map((_, index) => (
+                      <i key={index} className="fa-solid fa-star ms-0.5"></i>
+                    ))}
+                    <span className="text-gray-600 dark:text-gray-300 ms-2 text-sm">
+                      {product.ratingsAverage}
+                    </span>
+                  </span>
+                </div>
+
                     </div>
                   </Link>
                   <div className="flex justify-end">
