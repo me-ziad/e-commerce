@@ -16,17 +16,18 @@ export default function Navbar() {
   let { showWhishList } = useContext(WhisListContext);
   let { cart } = useContext(CartContext);
 
-  useEffect(() => {
-    if (localStorage.getItem('darkMood')) {
-      document.body.classList.add('dark');
-      document.body.style.backgroundColor = '#030712';
-      ref.current.checked = true;
-    }
-  }, []);
+  
+useEffect(() => {
+  if (localStorage.getItem('darkMood') && ref.current) {
+    document.body.classList.add('dark');
+    document.body.style.backgroundColor = '#030712';
+    ref.current.checked = true;
+  }
+}, []);
 
   function toggleMe() {
     let body = document.body;
-    if (ref.current.checked) {
+    if (ref.current?.checked) {
       body.classList.add('dark');
       body.style.backgroundColor = '#030712';
       localStorage.setItem('darkMood', 'dark');

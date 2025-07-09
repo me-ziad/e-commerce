@@ -124,7 +124,7 @@ export default function Register() {
             <div>
               <div>
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium">Oh, snapp!</span>{" "}
+                  <span className="font-medium"></span>{" "}
                   {formik.errors.name}
                 </p>
               </div>
@@ -153,7 +153,7 @@ export default function Register() {
             <div>
               <div>
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium">Oh, snapp!</span>{" "}
+                  <span className="font-medium"></span>{" "}
                   {formik.errors.email}
                 </p>
               </div>
@@ -181,7 +181,7 @@ export default function Register() {
             <div>
               <div>
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium">Oh, snapp!</span>{" "}
+                  <span className="font-medium"></span>{" "}
                   {formik.errors.password}
                 </p>
               </div>
@@ -209,7 +209,7 @@ export default function Register() {
             <div>
               <div>
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium">Oh, snapp!</span>{" "}
+                  <span className="font-medium"></span>{" "}
                   {formik.errors.rePassword}
                 </p>
               </div>
@@ -238,7 +238,7 @@ export default function Register() {
             <div>
               <div>
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium">Oh, snapp!</span>{" "}
+                  <span className="font-medium"></span>{" "}
                   {formik.errors.phone}
                 </p>
               </div>

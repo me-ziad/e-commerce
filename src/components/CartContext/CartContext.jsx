@@ -18,7 +18,7 @@ export default function CartContextProvider({ children }) {
 );
       displayCart();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err?.response?.data?.message || 'Failed to add product to cart');
     }
   }
@@ -28,7 +28,7 @@ export default function CartContextProvider({ children }) {
       const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/cart`, { headers });
       setCart(data);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error('Failed to load basket');
     }
   }
@@ -39,7 +39,7 @@ export default function CartContextProvider({ children }) {
       setCart(data);
       toast.success('The product has been removed from the cart');
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err?.response?.data?.message || 'Failed to delete product');
     }
   }
@@ -50,7 +50,7 @@ export default function CartContextProvider({ children }) {
       setCart(data);
       toast.success(data.message || 'The basket has been cleared');
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err?.response?.data?.message || 'Failed to clear basket');
     }
   }
@@ -61,7 +61,7 @@ export default function CartContextProvider({ children }) {
       setCart(data);
       toast.success('Updated successfully');
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err?.response?.data?.message || 'Failed to update quantity');
     }
   }

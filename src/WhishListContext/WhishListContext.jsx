@@ -22,7 +22,7 @@ export default function WhishListContextProvider({ children }) {
       displayWhishList();
     } catch (error) {
       toast.error(error?.response?.data?.message || "Failed to add to wishlist");
-      console.error("Add to wishlist error:", error);
+      // console.error("Add to wishlist error:", error);
     }
   }
 
@@ -35,7 +35,7 @@ export default function WhishListContextProvider({ children }) {
       setShowWhishList(data);
     } catch (error) {
       toast.error("Failed to fetch wishlist");
-      console.error("Fetch wishlist error:", error);
+      // console.error("Fetch wishlist error:", error);
     }
   }
 
@@ -49,7 +49,7 @@ export default function WhishListContextProvider({ children }) {
       displayWhishList();
     } catch (error) {
       toast.error("Failed to delete item from wishlist");
-      console.error("Delete wishlist error:", error);
+      // console.error("Delete wishlist error:", error);
     }
   }
 

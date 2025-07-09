@@ -78,7 +78,7 @@ export default function ForgetPassword() {
             <div>
               <div>
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium">Oh, snapp!</span>{" "}
+                  <span className="font-medium"></span>{" "}
                   {formik.errors.email}
                 </p>
               </div>

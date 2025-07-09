@@ -94,7 +94,7 @@ export default function Login() {
             <div>
               <div>
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium">Oh !</span>{" "}
+                  <span className="font-medium"></span>{" "}
                   {formik.errors.email}
                 </p>
               </div>
@@ -126,7 +126,7 @@ export default function Login() {
           {formik.errors.password && formik.touched.password && (
             <div>
               <p className=" text-sm text-red-600 dark:text-red-500">
-                <span className="font-medium">Oh, snapp!</span>{" "}
+                <span className="font-medium"></span>{" "}
                 {formik.errors.password}
               </p>
             </div>
