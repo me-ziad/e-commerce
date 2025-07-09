@@ -139,7 +139,7 @@ export default function Navbar() {
                 {/* Whishlist */}
                 <NavLink
                   to={"whishList"}
-                  className="relative rtl:-translate-x-5 ltr:translate-x-5"
+                  className="relative ltr:translate-x-5 rtl:-translate-x-5"
                 >
                   <div className="absolute w-5 h-5 text-xs font-bold text-white bg-main border-2 border-white rounded-full -top-1 left-3 flex items-center justify-center z-50">
                     {showWhishList.count}
