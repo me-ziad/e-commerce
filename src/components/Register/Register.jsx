@@ -6,43 +6,45 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import toast from "react-hot-toast";
 import imgs from "../../assets/OBJECTS.png";
+import { useTranslation } from 'react-i18next';
 
 export default function Register() {
   const [loding, setLoding] = useState(false);
   const [errApi, setErrApi] = useState(false);
+  const { t, i18n } = useTranslation();
 
   let { setUserToken } = useContext(UserContext);
 
   let validationSchema = yup.object().shape({
     name: yup
       .string()
-      .required("name is required")
-      .min(3, "min 3 characters")
-      .max(15, "max 15 characters"),
+      .required(t("nameisrequired"))
+      .min(3, t("min3characters"))
+      .max(15, t("max15characters")),
     email: yup
       .string()
-      .required("email is required")
-      .email("invalid email")
-      .min(3, "min 3 characters")
-      .max(60, "max 15 characters"),
+      .required(t("emailisrequired"))
+      .email(t("invalidemail"))
+      .min(3, t("min3characters"))
+      .max(60, t("max15characters")),
     password: yup
       .string()
-      .required("password is required")
-      .min(3, "min 3 characters")
-      .max(15, "max 15 characters")
-      .matches(/^[A-Z]\w{4,15}$/, "enter true password like (Ziad)"),
+      .required(t("passwordisrequired"))
+      .min(3, t("min3characters"))
+      .max(15,t("max15characters"))
+      .matches(/^[A-Z]\w{4,15}$/, t("entertruepasswordlike")),
     rePassword: yup
       .string()
-      .required("rePassword is required")
-      .min(3, "min 3 characters")
-      .max(15, "max 15 characters")
-      .oneOf([yup.ref("password")], "no match with password"),
+      .required(t("rePasswordisrequired"))
+      .min(3, t("min3characters"))
+    .max(15, t("max15characters"))
+      .oneOf([yup.ref("password")], t("nomatchwithpassword")),
     phone: yup
       .string()
-      .required("Phone is required")
-      .min(3, "min 3 characters")
-      .max(614, "max 15 characters")
-      .matches(/^01[0125][0-9]{8}$/, "We Need Egyptian Number"),
+      .required(t("Phoneisrequired"))
+      .min(3, t("min3characters"))
+      .max(614, t("max15characters"))
+      .matches(/^01[0125][0-9]{8}$/, t("WeNeedEgyptianNumber")),
   });
 
   let navigate = useNavigate();
@@ -90,8 +92,8 @@ export default function Register() {
         onSubmit={formik.handleSubmit}
         className=" w-full lg:w-2/6 lg:p-7 p-4 shadow-md border rounded-md"
       >
-        <h2 className=" font-medium text-2xl mb-8 text-main uppercase text-center">
-          Register
+        <h2 className=" font-bold text-2xl mb-8  uppercase text-center">
+          {t('Register')}
         </h2>
 
         {errApi && (
@@ -118,7 +120,7 @@ export default function Register() {
             htmlFor="name"
             className="peer-focus:font-medium absolute text-sm dark:text-gray-400 text-gray-900  duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Enter Your Name
+            {t('EnterYourname')}
           </label>
           {formik.errors.name && formik.touched.name && (
             <div>
@@ -146,7 +148,7 @@ export default function Register() {
             htmlFor="floating_email"
             className="peer-focus:font-medium absolute text-sm text-gray-900 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Enter Your Email
+            {t('EnterYourEmail')}
           </label>
 
           {formik.errors.email && formik.touched.email && (
@@ -175,7 +177,7 @@ export default function Register() {
             htmlFor="floating_password"
             className="peer-focus:font-medium absolute text-sm text-gray-900 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Enter Your Password
+            {t('EnterYourPassword')}
           </label>
           {formik.errors.password && formik.touched.password && (
             <div>
@@ -203,7 +205,7 @@ export default function Register() {
             htmlFor="floating_rePassword"
             className="peer-focus:font-medium absolute text-sm text-gray-900 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Enter Your rePassword
+            {t('EnterYourrePassword')}
           </label>
           {formik.errors.rePassword && formik.touched.rePassword && (
             <div>
@@ -232,7 +234,7 @@ export default function Register() {
             htmlFor="floating_phone"
             className="peer-focus:font-medium absolute text-sm text-gray-900 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Enter Your Phone
+            {t('EnterYourPhone')}
           </label>
           {formik.errors.phone && formik.touched.phone && (
             <div>
@@ -251,7 +253,7 @@ export default function Register() {
             type="submit"
             className="flex justify-center items-center m-auto text-white bg-main hover:bg-green-900 focus:outline-none focus:bg-green-900 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-500 dark:focus:main"
           >
-            Submit
+            {t('login')}
           </button>
         ) : (
           <button

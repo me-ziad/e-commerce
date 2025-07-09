@@ -6,10 +6,12 @@ import { useQuery } from '@tanstack/react-query';
 import { WhisListContext } from '../../WhishListContext/WhishListContext';
 import Loader from '../Loader/Loader';
 import Footer from '../Footr/Footer';
+import { useTranslation } from 'react-i18next';
 
 export default function RecentProduct() {
   const { addCart } = useContext(CartContext);
   const { postWhishList } = useContext(WhisListContext);
+    const { t, i18n } = useTranslation();
 
   // Fetch products from the API
   const getProduct = () => axios.get('https://ecommerce.routemisr.com/api/v1/products');
@@ -37,7 +39,7 @@ export default function RecentProduct() {
                       <h3 className="text-main mt-3">{product.category.name}</h3>
                       <h3 className="text-xl">{product.title.split(' ', 2).join(' ')}</h3>
                       <div className="flex justify-between items-center mt-4">
-                        <span>{product.price} EGP</span>
+                        <span>{product.price} {t('EGY')}</span>
                         <span className="text-yellow-400">
                           {product.ratingsAverage}
                           <i className="fa-solid fa-star ms-2"></i>
@@ -56,7 +58,7 @@ export default function RecentProduct() {
                       onClick={() => addCart(product.id)}
                       className="w-full mb-2 text-center hover:bg-green-400 group-hover:translate-y-0 translate-y-full duration-500 group-hover:opacity-100 pt-2 pb-2 ps-4 pe-4 opacity-0 bg-main text-white mt-6 rounded"
                     >
-                      + Add to Cart
+                     {t('AddtoCart')}
                     </button>
                   </div>
                 </div>

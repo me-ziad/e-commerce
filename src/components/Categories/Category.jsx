@@ -5,13 +5,13 @@ import style from './Categories.module.css'
 import {motion} from 'framer-motion' 
 import Loader from "../Loader/Loader";
 import { FadeIn } from "../Variants";
+import { useTranslation } from 'react-i18next';
 
-export default function Category() {
-    
+export default function Category() {    
   const [loader, setLoader] = useState(false)
   const [categoryDetails, setBrandsDetails] = useState([])
   const [showDetails, setShowDetails] = useState(false)
-  
+      const { t, i18n } = useTranslation();
   const divValidation = {
     hidden : {
       y  :-300,
@@ -49,7 +49,7 @@ export default function Category() {
     }
 
   return<>
-  <h1 className=" text-gray-500 dark:text-gray-400 text-xl  px-10 font-semibold mb-4">All Category</h1>
+  <h1 className=" text-gray-500 dark:text-gray-400 text-xl  px-10 font-semibold mb-4">{t("AllCategory")}</h1>
 
             {showDetails==true ? <>
               <div className=" fixed top-0 overflow-hidden left-0 right-0 z-50 h-screen  w-full bg-black bg-opacity-50">
@@ -72,7 +72,7 @@ export default function Category() {
               </div>
                 </div>
                 <div className=" flex w-ful translate-y-3 justify-end me-4">
-                  <button onClick={()=>setShowDetails(false)} className=" bg-gray-500 lg:py-2 py-1 px-2 lg:px-4 rounded-md text-white"> close</button>
+                  <button onClick={()=>setShowDetails(false)} className=" bg-gray-500 lg:py-2 py-1 px-2 lg:px-4 rounded-md text-white"> {t('close')}</button>
                 </div>
               </motion.div>
               </div>
@@ -90,7 +90,7 @@ export default function Category() {
                         <div className=" p-2 lg:px-3">
 
                             <h3 className=' text-xl py-4 text-main'>{cat.name}</h3>
-                            <button onClick={()=>PrandsDetails(cat._id)}  className=' w-full text-center hover:bg-green-400 group-hover:translate-y-0 translate-y-full duration-500 group-hover:opacity-100 py-2 px-4 opacity-0 bg-main text-white mt-2 mb-2 rounded'> view details </button>
+                            <button onClick={()=>PrandsDetails(cat._id)}  className=' w-full text-center hover:bg-green-400 group-hover:translate-y-0 translate-y-full duration-500 group-hover:opacity-100 py-2 px-4 opacity-0 bg-main text-white mt-2 mb-2 rounded'>{t('viewdetails')}</button>
                         </div>
                       </div>
                         </div>

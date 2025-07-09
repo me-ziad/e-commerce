@@ -7,24 +7,27 @@ import { UserContext } from "../../Context/UserContext";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import imgs from '../../assets/OBJECTS.png'
+import { useTranslation } from 'react-i18next';
+
 
 export default function Login() {
   const [laoding, setLoding] = useState(false);
   const [errApi, setErrApi] = useState(false);
   let { setUserToken } = useContext(UserContext);
+  const { t, i18n } = useTranslation();
 
   let validationSchema = yup.object().shape({
     email: yup
       .string()
-      .required("email is required")
-      .email("invalid email")
-      .min(3, "min 3 characters")
-      .max(60, "max 15 characters"),
+      .required(t("emailisrequired"))
+      .email(t("invalidemail"))
+      .min(3, t("min3characters"))
+      .max(60, t("max15characters")),
     password: yup
       .string()
-      .required("password is required")
-      .min(3, "min 3 characters")
-      .max(15, "max 15 characters")
+      .required(t("passwordisrequired"))
+      .min(3, t("min3characters"))
+      .max(15, t("max15characters"))
       .matches(/^[A-Z]\w{4,15}$/, "enter true password"),
   });
 
@@ -70,8 +73,8 @@ export default function Login() {
         onSubmit={formik.handleSubmit}
         className=" w-full lg:w-2/6 lg:p-7 p-4 shadow-md border rounded-md "
       >
-        <h2 className=" font-medium text-2xl mb-8 text-main uppercase text-center">
-          Login
+        <h2 className=" font-bold text-2xl mb-8 uppercase text-center">
+          {t('logine')}
         </h2>
 
         <div className="relative z-0 w-full mb-8 group">
@@ -88,7 +91,7 @@ export default function Login() {
             htmlFor="floating_email"
             className="peer-focus:font-medium absolute text-sm text-gray-900 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Enter Your Email
+            {t('EnterYourEmail')}
           </label>
           {formik.errors.email && formik.touched.email && (
             <div>
@@ -121,7 +124,7 @@ export default function Login() {
             htmlFor="floating_password"
             className="peer-focus:font-medium absolute text-sm text-gray-900 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Enter Your Password
+            {t('EnterYourPassword')}
           </label>
           {formik.errors.password && formik.touched.password && (
             <div>
@@ -144,7 +147,7 @@ export default function Login() {
         <div className=" mb-2 -translate-y-3 text-center">
           <Link to={"/forgetPassword"} className="text-main text-sm">
             {" "}
-            forget your password ?
+            {t('forgetyourpassword')}
           </Link>
         </div>
 
@@ -153,7 +156,7 @@ export default function Login() {
             type="submit"
             className="text-white bg-main hover:bg-green-900 flex justify-center items-center mx-auto focus:outline-none focus:bg-green-900 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-600 dark:focus:main"
           >
-            sign
+            {t('sign')}
           </button>
         ) : (
           <button
