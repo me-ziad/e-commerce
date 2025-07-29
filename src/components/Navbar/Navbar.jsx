@@ -276,33 +276,6 @@ export default function Navbar() {
   </>
             ) : (
               <>
-                <div className="flex gap-3 items-center">
-                  {/* زر اللغة العربية */}
-                  <button
-                    onClick={() => changeLanguage("ar")}
-                    title="العربية"
-                    className="w-8 h-8"
-                  >
-                    <img
-                      src="https://flagcdn.com/w40/eg.png"
-                      alt="Arabic"
-                      className="rounded-full w-full h-full object-cover"
-                    />
-                  </button>
-
-                  {/* زر اللغة الإنجليزية */}
-                  <button
-                    onClick={() => changeLanguage("en")}
-                    title="English"
-                    className="w-8 h-8"
-                  >
-                    <img
-                      src="https://flagcdn.com/w40/us.png"
-                      alt="English"
-                      className="rounded-full w-full h-full object-cover"
-                    />
-                  </button>
-                </div>
                 <NavLink
                   to={"register"}
                   className="text-sm font-semibold text-gray-500 dark:text-gray-400"
@@ -315,6 +288,39 @@ export default function Navbar() {
                 >
                   {t("login")}
                 </NavLink>
+               <div className="relative inline-block text-left">
+      <button
+        onClick={() => setOpend(!open)}
+        className="inline-flex items-center justify-between w-40 px-4 py-2 bg-white border border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-semibold"
+      >
+        {options.find((opt) => opt.value === selected)?.label}
+        <svg
+          className={`w-4 h-4 ml-2 transition-transform ${open ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="absolute z-50 mt-2 w-40 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <div className="py-1">
+            {options.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => handleSelect(opt.value)}
+                className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 hover:text-blue-600 transition-all font-medium"
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
               </>
             )}
             
@@ -376,8 +382,6 @@ export default function Navbar() {
           </NavLink>
         </>
       )}
-
-      {/* زرار تغيير اللغة في الموبايل */}
       <div className="flex gap-2 mt-4">
         <button onClick={() => changeLanguage("ar")} title="العربية" className="w-8 h-6">
           <img src="https://flagcdn.com/w40/eg.png" alt="Arabic" className="rounded-md w-full h-full object-cover" />
@@ -386,6 +390,8 @@ export default function Navbar() {
           <img src="https://flagcdn.com/w40/us.png" alt="English" className="rounded-md w-full h-full object-cover" />
         </button>
       </div>
+
+      {/* زرار تغيير اللغة في الموبايل */}
     </div>
   </motion.nav>
 )}
