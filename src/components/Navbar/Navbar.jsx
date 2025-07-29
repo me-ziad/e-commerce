@@ -200,15 +200,37 @@ export default function Navbar() {
                 </div>
 
                 {/* Toggle */}
-                <label className="inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    ref={ref}
-                    onChange={toggleMe}
-                    className="sr-only peer"
-                  />
-                  <div className="relative w-11 h-6 bg-gray-400 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
-                </label>
+<label className="inline-flex items-center cursor-pointer">
+  <input
+    type="checkbox"
+    onChange={toggleMe}
+    className="sr-only peer"
+    ref={ref}
+  />
+  <div className="w-14 h-8 bg-gray-300 dark:bg-gray-600 rounded-full peer-checked:bg-blue-500 relative transition-colors duration-300">
+    <span
+      className="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 peer-checked:translate-x-6 flex items-center justify-center"
+    >
+       <svg
+        className="w-3.5 h-3.5 text-yellow-400 hidden peer-checked:block"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path d="M10 15a5 5 0 100-10 5 5 0 000 10z" />
+      </svg>
+       <svg
+        className="w-3.5 h-3.5 text-gray-500 block peer-checked:hidden"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path d="M17.293 13.95a8 8 0 01-10.243-10.243 8 8 0 1010.243 10.243z" />
+      </svg>
+    </span>
+  </div>
+</label>
+
+
+
 
                 {/* Logout */}
                 <span
