@@ -1,6 +1,7 @@
 import axios from "axios"
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { UserContext } from "../../Context/UserContext";
 
 export const CartContext = createContext();
 
@@ -8,9 +9,9 @@ export default function CartContextProvider({ children }) {
   const headers = {
     token: localStorage.getItem('userToken')
   };
-
+    const { UserToken } = useContext(UserContext);  
   const [cart, setCart] = useState(null);
-
+ 
   async function addCart(productId) {
     try {
       const { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/cart`, { productId }, { headers });
@@ -24,6 +25,7 @@ export default function CartContextProvider({ children }) {
   }
 
   async function displayCart() {
+        if (!UserToken) return setCart(null); 
     try {
       const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/cart`, { headers });
       setCart(data);
@@ -68,7 +70,7 @@ export default function CartContextProvider({ children }) {
 
   useEffect(() => {
     displayCart();
-  }, []);
+  }, [UserToken]);
 
   return (
     <CartContext.Provider value={{ cart, addCart, clearCart, deleteCart, updateCart, displayCart }}>

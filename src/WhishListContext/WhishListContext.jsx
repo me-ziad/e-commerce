@@ -1,6 +1,7 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { UserContext } from "../Context/UserContext";
 
 export const WhisListContext = createContext();
 
@@ -8,8 +9,10 @@ export default function WhishListContextProvider({ children }) {
   const headers = {
     token: localStorage.getItem("userToken"),
   };
-
   const [showWhishList, setShowWhishList] = useState([]);
+    const { UserToken } = useContext(UserContext); // 🧠 استخدم التوكن من context مش من localStorage
+    const [whishLists, setWhishLists] = useState(null);
+  
 
   async function postWhishList(productId) {
     try {
@@ -27,6 +30,7 @@ export default function WhishListContextProvider({ children }) {
   }
 
   async function displayWhishList() {
+        if (!UserToken) return setWhishLists(null); // ✅ صفّر الكارت لو مفيش user
     try {
       const { data } = await axios.get(
         "https://ecommerce.routemisr.com/api/v1/wishlist",
@@ -55,7 +59,7 @@ export default function WhishListContextProvider({ children }) {
 
   useEffect(() => {
     displayWhishList();
-  }, []);
+  }, [UserToken]);
 
   return (
     <WhisListContext.Provider

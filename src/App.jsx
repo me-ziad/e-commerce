@@ -68,9 +68,9 @@ function App() {
       
 
     <QueryClientProvider client={query}>
+        <UserContextProvider>
       <WhishListContextProvider>
       <CartContextProvider>
-        <UserContextProvider>
         <RouterProvider router={routers}/>         
         <Toaster 
          position="top-right"
@@ -85,9 +85,9 @@ function App() {
   </div>
 </div></div></Offline>
 
-        </UserContextProvider>
       </CartContextProvider>
          </WhishListContextProvider>
+        </UserContextProvider>
     </QueryClientProvider>
       </Provider>
  
