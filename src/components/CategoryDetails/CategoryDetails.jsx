@@ -32,33 +32,30 @@ export default function PrandsDetails() {
 
 
 
-{loader ?
-<div className=" flex h-screen justify-center items-center">
-<i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
+            {loader ?
+            <div className=" flex h-screen justify-center items-center">
+            <i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
 
-</div>: <>
- <div className="container">
-                <div className= " lg:flex lg:items-center  p-5">
-                            <div className="  lg:w-1/4">
-                           <img className=' w-full' src={category.image} alt="" />
-           
+            </div>: <>
+            <div className="container">
+                            <div className= " lg:flex lg:items-center  p-5">
+                                        <div className="  lg:w-1/4">
+                                      <img className=' w-full' src={category.image} alt="" />
+                      
+                                        </div>
+                                        
+                                        <div className=" lg:w-3/4 lg:p-5 lg:ps-20">
+                                        <h1 className='text-[30px]'>{category.name}</h1>
+                                        <p className=' text-gray-400'>{category.slug }</p>
+                                        <NavLink to={'/'}>
+
+                                        <button className='w-full rounded-md bg-main lg:ps-5 lg:pe-5 pt-1 mt-8 pb-1 hover:bg-green-400 text-white'>Add To Cart From Home</button>
+                                        </NavLink>
+
+                              </div>
                             </div>
-                            
-                            <div className=" lg:w-3/4 lg:p-5 lg:ps-20">
-                            <h1 className='text-[30px]'>{category.name}</h1>
-                            <p className=' text-gray-400'>{category.slug }</p>
-                            <NavLink to={'/'}>
+                        </div>
+                  </>}
 
-                            <button className='w-full rounded-md bg-main lg:ps-5 lg:pe-5 pt-1 mt-8 pb-1 hover:bg-green-400 text-white'>Add To Cart From Home</button>
-                            </NavLink>
-
-                  </div>
-
-                </div>
-            </div>
-</>}
-
-
-   
   </>
 }

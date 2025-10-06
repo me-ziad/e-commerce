@@ -18,7 +18,7 @@ export default function Navbar() {
   const { t, i18n } = useTranslation();
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
-    document.dir = lng === "ar" ? "rtl" : "ltr"; // دعم الاتجاه
+    document.dir = lng === "ar" ? "rtl" : "ltr"; 
   };
    const [open, setOpend] = useState(false);
   const [selected, setSelected] = useState("en");
@@ -200,80 +200,80 @@ export default function Navbar() {
                 </div>
 
                 {/* Toggle */}
-<label className="inline-flex items-center cursor-pointer">
-  <input
-    type="checkbox"
-    onChange={toggleMe}
-    className="sr-only peer"
-    ref={ref}
-  />
-  <div className="w-14 h-8 bg-gray-300 dark:bg-gray-600 rounded-full peer-checked:bg-blue-500 relative transition-colors duration-300">
-    <span
-      className="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 peer-checked:translate-x-6 flex items-center justify-center"
-    >
-       <svg
-        className="w-3.5 h-3.5 text-yellow-400 hidden peer-checked:block"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-      >
-        <path d="M10 15a5 5 0 100-10 5 5 0 000 10z" />
-      </svg>
-       <svg
-        className="w-3.5 h-3.5 text-gray-500 block peer-checked:hidden"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-      >
-        <path d="M17.293 13.95a8 8 0 01-10.243-10.243 8 8 0 1010.243 10.243z" />
-      </svg>
-    </span>
-  </div>
-</label>
+            <label className="inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                onChange={toggleMe}
+                className="sr-only peer"
+                ref={ref}
+              />
+              <div className="w-14 h-8 bg-gray-300 dark:bg-gray-600 rounded-full peer-checked:bg-blue-500 relative transition-colors duration-300">
+                <span
+                  className="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 peer-checked:translate-x-6 flex items-center justify-center"
+                >
+                  <svg
+                    className="w-3.5 h-3.5 text-yellow-400 hidden peer-checked:block"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 15a5 5 0 100-10 5 5 0 000 10z" />
+                  </svg>
+                  <svg
+                    className="w-3.5 h-3.5 text-gray-500 block peer-checked:hidden"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M17.293 13.95a8 8 0 01-10.243-10.243 8 8 0 1010.243 10.243z" />
+                  </svg>
+                </span>
+              </div>
+            </label>
 
 
 
 
                 {/* Logout */}
-                <span
-                  onClick={deleteToken}
-                  className="text-md font-semibold cursor-pointer hover:text-main text-gray-500 dark:text-gray-400 "
+                         <span 
+                            onClick={deleteToken}
+                            className="text-md font-semibold cursor-pointer hover:text-main text-gray-500 dark:text-gray-400 "
+                          >
+                            {t("logout")}
+                            <i className="fa-solid fa-arrow-right-from-bracket text-main ms-1"></i>
+                          </span>
+          <div className="relative inline-block text-left">
+                <button
+                  onClick={() => setOpend(!open)}
+                  className="inline-flex items-center justify-between w-40 px-4 py-2 bg-white border border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-semibold"
                 >
-                  {t("logout")}
-                  <i className="fa-solid fa-arrow-right-from-bracket text-main ms-1"></i>
-                </span>
-<div className="relative inline-block text-left">
-      <button
-        onClick={() => setOpend(!open)}
-        className="inline-flex items-center justify-between w-40 px-4 py-2 bg-white border border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-semibold"
-      >
-        {options.find((opt) => opt.value === selected)?.label}
-        <svg
-          className={`w-4 h-4 ml-2 transition-transform ${open ? "rotate-180" : ""}`}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
+                  {options.find((opt) => opt.value === selected)?.label}
+                  <svg
+                    className={`w-4 h-4 ml-2 transition-transform ${open ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
 
-      {open && (
-        <div className="absolute z-50 mt-2 w-40 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-          <div className="py-1">
-            {options.map((opt) => (
-              <button
-                key={opt.value}
-                onClick={() => handleSelect(opt.value)}
-                className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 hover:text-blue-600 transition-all font-medium"
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  </>
+                {open && (
+                  <div className="absolute z-50 mt-2 w-40 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <div className="py-1">
+                      {options.map((opt) => (
+                        <button
+                          key={opt.value}
+                          onClick={() => handleSelect(opt.value)}
+                          className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 hover:text-blue-600 transition-all font-medium"
+                        >
+                          {opt.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
             ) : (
               <>
                 <NavLink
