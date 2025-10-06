@@ -30,8 +30,6 @@ export default function PrandsDetails() {
 
   return <>  
 
-
-
             {loader ?
             <div className=" flex h-screen justify-center items-center">
             <i className="text-6xl text-main fa-solid fa-spinner fa-spin-pulse"></i>
