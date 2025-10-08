@@ -4,34 +4,36 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import imgs from "../../assets/OBJECTS.png";
+import imgs from "../../assets/signup-g-Dtp6-wtD.svg";
+import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 export default function ForgetPassword() {
   const [loading, setLoading] = useState(false);
-  let validationSchema = yup.object().shape({
+    const { t } = useTranslation();
+
+  const validationSchema = yup.object().shape({
     email: yup
       .string()
-      .required("email is required")
-      .email("invalid email")
-      .min(3, "min 3 characters")
-      .max(60, "max 15 characters"),
+      .required("Email is required")
+      .email("Invalid email")
+      .min(3, "Min 3 characters")
+      .max(60, "Max 60 characters"),
   });
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   async function forgetPassword(values) {
     try {
       setLoading(true);
-      let { data } = await axios.post(
+      const { data } = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords",
         values
       );
-      // console.log(data);
       toast.success(data.message);
       navigate("/codePass");
     } catch (err) {
-      // console.log(err);
-      setLoading(false);
+      toast.error("Failed to send reset code");
     } finally {
       setLoading(false);
     }
@@ -47,62 +49,53 @@ export default function ForgetPassword() {
 
   return (
     <>
-    <div className="flex justify-between items-center lg:min-h-[600px] lg:px-36">
-            <img src={imgs} alt="header" className="w-3/12 hidden lg:flex" />
+      <Helmet>
+        <title>{t('ForgetPassword')}</title>
+      </Helmet>
 
-      <form
-        onSubmit={formik.handleSubmit}
-        className="  w-full lg:w-2/6 lg:p-7 p-4 shadow-md border rounded-md "
-      >
-        <h2 className=" font-medium text-2xl mb-8 text-main text-center">
-          Forget Password
-        </h2>
+      <div className="min-h-screen bg-[url('/background-pattern.png')] bg-cover bg-center flex items-center justify-center px-4">
+        <div className="bg-white bg-opacity-55 rounded-xl shadow-xl w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
 
-        <div className="relative z-0 w-full mb-8 group">
-          <input
-            type="text"
-            name="email" 
-            id="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-400 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer"
-            placeholder=" "
-          />
-          <label
-            htmlFor="floating_email"
-            className="peer-focus:font-medium absolute text-sm text-gray-900 dark:text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Enter Your Email
-          </label>
-          {formik.errors.email && formik.touched.email && (
-            <div>
+          {/* Left Side Image */}
+          <div className="hidden lg:flex items-center justify-center bg-white bg-opacity-20">
+            <img src={imgs} alt="Forgot Password Illustration" className="w-3/4" />
+          </div>
+
+          {/* Right Side Form */}
+          <div className="p-10">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">{t('ForgetPassword')}</h2>
+            <p className="text-gray-500 mb-6 text-center">{t('Enteryouremailandwewillsendyouaresetcode')}</p>
+
+            <form onSubmit={formik.handleSubmit} className="space-y-5">
+              {/* Email */}
               <div>
-                <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium"></span>{" "}
-                  {formik.errors.email}
-                </p>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">{t('EnterYourEmail')}</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                  className="w-full border border-gray-300 px-4 py-2 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                  placeholder={t('EnterYourEmail')}
+                />
+                {formik.errors.email && formik.touched.email && (
+                  <p className="text-sm text-red-500 mt-1">{formik.errors.email}</p>
+                )}
               </div>
-            </div>
-          )}
-        </div>
 
-        {!loading ? (
-          <button
-            type="submit"
-            className="flex justify-center items-center m-auto text-white bg-main hover:bg-green-900 focus:ring-4 focus:outline-none focus:bg-green-900 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-600 dark:focus:main"
-          >
-            send
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="flex justify-center items-center m-auto text-white bg-main hover:bg-green-900  focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-900 dark:focus:main"
-          >
-            <i className="fa-solid fa-spinner fa-spin"></i>
-          </button>
-        )}
-      </form>
-    </div>
+              {/* Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md text-sm font-medium transition"
+              >
+                {loading ? <i className="fas fa-spinner fa-spin"></i> : t("Sendcode")}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

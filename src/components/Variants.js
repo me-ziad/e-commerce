@@ -20,8 +20,5 @@ export const  FadeIn =(direction, delay)=>{
                 easeOut : [0.70,0.70,0.70,0.70],
             }
         }
-
-
-
   }
 }

@@ -6,44 +6,52 @@ import { CartContext } from "../CartContext/CartContext";
 import { WhisListContext } from "../../WhishListContext/WhishListContext";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   let ref = useRef();
   let navigate = useNavigate();
   let { UserToken, setUserToken } = useContext(UserContext);
   let { showWhishList } = useContext(WhisListContext);
   let { cart } = useContext(CartContext);
   const { t, i18n } = useTranslation();
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    document.dir = lng === "ar" ? "rtl" : "ltr"; 
-  };
-   const [open, setOpend] = useState(false);
+
+  const [openLang, setOpenLang] = useState(false);
   const [selected, setSelected] = useState("en");
-  
+
   const options = [
     { value: "en", label: "🇺🇸 English" },
     { value: "ar", label: "🇪🇬 العربية" },
   ];
-    const handleSelect = (lang) => {
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    document.dir = lng === "ar" ? "rtl" : "ltr";
+  };
+
+  const handleSelect = (lang) => {
     setSelected(lang);
     changeLanguage(lang);
-    setOpend(false);
+    setOpenLang(false);
   };
 
   useEffect(() => {
-    if (localStorage.getItem("darkMood") && ref.current) {
+    if (localStorage.getItem("darkMood")) {
       document.body.classList.add("dark");
       document.body.style.backgroundColor = "#030712";
-      ref.current.checked = true;
+      setDarkMode(true);
+      if (ref.current) ref.current.checked = true;
     }
   }, []);
 
   function toggleMe() {
-    let body = document.body;
-    if (ref.current?.checked) {
+    const body = document.body;
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    if (newMode) {
       body.classList.add("dark");
       body.style.backgroundColor = "#030712";
       localStorage.setItem("darkMood", "dark");
@@ -61,344 +69,325 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-    function handleScroll() {
-      setIsScrolling(window.scrollY > 20);
-    }
+    const handleScroll = () => setIsScrolling(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const divValidation = {
-    hidden: {
-      y: -100,
-      opacity: 0,
-    },
+    hidden: { y: -100, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        duration: 0.4,
-        delay: 0.2,
-        type: "spring",
-        stiffness: 60,
-      },
+      transition: { duration: 0.4, delay: 0.2, type: "spring", stiffness: 60 },
     },
   };
 
   return (
     <>
+      {/* ✅ Navbar */}
       <motion.header
         variants={divValidation}
         initial="hidden"
         animate="visible"
-        className="fixed text-center border-b border-gray-400 dark:border-gray-700 inset-x-0 top-0 z-40 bg-slate-200"
+        className={`fixed inset-x-0 top-0 z-40 border-b transition-all duration-500 lg:px-14 ${
+          darkMode
+            ? "bg-gray-900 border-gray-700 text-white"
+            : "bg-slate-100 border-gray-300 text-gray-900"
+        }`}
       >
         <nav
-          className={`${
-            isScrolling ? "py-3" : "py-3.5"
-          } flex items-center transition-[padding] duration-500 px-6 dark:bg-gray-900 lg:px-8`}
+          className={`flex items-center justify-between px-6 lg:px-8 ${
+            isScrolling ? "py-3" : "py-4"
+          }`}
         >
-          <div className="flex items-center">
-            <Link to={""}>
-              <img className="w-[150px]" src={logo} alt="logo" />
-            </Link>
-          </div>
+          {/* Logo */}
+          <Link to="/">
+            <img className="w-[150px]" src={logo} alt="logo" />
+          </Link>
 
-          <div className="ms-auto lg:hidden">
-            <button
-              onClick={() => setOpen(true)}
-              type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 dark:text-gray-400 text-gray-700"
-            >
-              <i className="fa-solid fa-bars text-xl" />
-            </button>
-          </div>
+          {/* Burger Icon (Mobile) */}
+          <button
+            onClick={() => setOpen(true)}
+            type="button"
+            className="lg:hidden text-gray-700 dark:text-gray-300"
+          >
+            <i className="fa-solid fa-bars text-2xl"></i>
+          </button>
 
+          {/* Links (Desktop) */}
           {UserToken && (
-            <div className="hidden lg:flex lg:gap-x-4 ms-7">
-              <NavLink
-                to="/"
-                className="rtl:text-lg font-semibold text-gray-500 dark:text-gray-400"
-              >
+            <div className="hidden lg:flex gap-x-6 items-center">
+              <NavLink to="/" className="font-semibold hover:text-main">
                 {t("home")}
               </NavLink>
-              <NavLink
-                to={"category"}
-                className="rtl:text-lg font-semibold text-gray-500 dark:text-gray-400"
-              >
+              <NavLink to="/category" className="font-semibold hover:text-main">
                 {t("category")}
               </NavLink>
-              <NavLink
-                to={"brands"}
-                className="rtl:text-lg font-semibold text-gray-500 dark:text-gray-400"
-              >
+              <NavLink to="/brands" className="font-semibold hover:text-main">
                 {t("brands")}
               </NavLink>
-              <NavLink
-                to={"products"}
-                className="rtl:text-lg font-semibold text-gray-500 dark:text-gray-400"
-              >
+              <NavLink to="/products" className="font-semibold hover:text-main">
                 {t("products")}
               </NavLink>
             </div>
           )}
 
-          {/* Right Side */}
-          <div className="hidden lg:flex lg:flex-1 lg:gap-x-3 lg:justify-end items-center">
+          {/* Right Side (Desktop) */}
+          <div className="hidden lg:flex items-center gap-4">
             {UserToken ? (
               <>
-         
-                {/* Whishlist */}
-                <NavLink
-                  to={"whishList"}
-                  className="relative ltr:translate-x-5 rtl:-translate-x-5"
-                >
-                  <div className="absolute w-5 h-5 text-xs font-bold text-white bg-main border-2 border-white rounded-full -top-1 left-3 flex items-center justify-center z-50">
+                {/* Wishlist */}
+                <NavLink to="whishList" className="relative">
+                  <div className="absolute w-5 h-5 text-xs font-bold text-white bg-main border-2 border-white rounded-full -top-1 -right-2 flex items-center justify-center">
                     {showWhishList.count}
                   </div>
                   <i className="fa-regular fa-heart text-2xl text-main"></i>
                 </NavLink>
 
                 {/* Cart */}
-                <NavLink to={"cart"} className="relative ms-4">
-                  <div className="absolute w-5 h-5 text-xs font-bold text-white bg-main border-2 border-white rounded-full -top-1 -end-2 flex items-center justify-center">
+                <NavLink to="cart" className="relative">
+                  <div className="absolute w-5 h-5 text-xs font-bold text-white bg-main border-2 border-white rounded-full -top-1 -right-2 flex items-center justify-center">
                     {cart?.numOfCartItems}
                   </div>
                   <i className="fa-solid fa-cart-shopping text-2xl text-main"></i>
                 </NavLink>
 
-                {/* Social Icons */}
-                <div className="flex gap-3 mx-1">
-                  <a
-                    href="https://www.facebook.com/share/1BzvN2c3rE/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i className="fa-brands fa-facebook text-gray-600 dark:text-gray-400 hover:text-blue-600 text-xl"></i>
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/ziad-mostafa-859256291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i className="fa-brands fa-linkedin text-gray-600 dark:text-gray-400 hover:text-blue-600 text-xl"></i>
-                  </a>
-                  <a
-                    href="https://github.com/11ziad"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i className="fa-brands fa-github text-gray-600 dark:text-gray-400 hover:text-gray-800 text-xl"></i>
-                  </a>
-                  <a
-                    href="https://wa.me/201280226462"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i className="fa-brands fa-whatsapp text-gray-600 dark:text-gray-400 hover:text-gray-800 text-xl"></i>
-                  </a>
-                </div>
-
-                {/* Toggle */}
-            <label className="inline-flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                onChange={toggleMe}
-                className="sr-only peer"
-                ref={ref}
-              />
-              <div className="w-14 h-8 bg-gray-300 dark:bg-gray-600 rounded-full peer-checked:bg-blue-500 relative transition-colors duration-300">
-                <span
-                  className="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 peer-checked:translate-x-6 flex items-center justify-center"
-                >
-                  <svg
-                    className="w-3.5 h-3.5 text-yellow-400 hidden peer-checked:block"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M10 15a5 5 0 100-10 5 5 0 000 10z" />
-                  </svg>
-                  <svg
-                    className="w-3.5 h-3.5 text-gray-500 block peer-checked:hidden"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M17.293 13.95a8 8 0 01-10.243-10.243 8 8 0 1010.243 10.243z" />
-                  </svg>
-                </span>
-              </div>
-            </label>
-
-
-
-
-                {/* Logout */}
-                         <span 
-                            onClick={deleteToken}
-                            className="text-md font-semibold cursor-pointer hover:text-main text-gray-500 dark:text-gray-400 "
-                          >
-                            {t("logout")}
-                            <i className="fa-solid fa-arrow-right-from-bracket text-main ms-1"></i>
-                          </span>
-          <div className="relative inline-block text-left">
+                {/* Dark Mode Toggle */}
                 <button
-                  onClick={() => setOpend(!open)}
-                  className="inline-flex items-center justify-between w-40 px-4 py-2 bg-white border border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-semibold"
+                  onClick={toggleMe}
+                  className={`relative flex items-center w-16 h-8 rounded-full transition-all duration-500 ${
+                    darkMode ? "bg-blue-500" : "bg-gray-300"
+                  }`}
                 >
-                  {options.find((opt) => opt.value === selected)?.label}
-                  <svg
-                    className={`w-4 h-4 ml-2 transition-transform ${open ? "rotate-180" : ""}`}
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
+                  <span
+                    className={`absolute top-1 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-500 flex items-center justify-center ${
+                      darkMode
+                        ? i18n.language === "ar"
+                          ? "-translate-x-8"
+                          : "translate-x-8"
+                        : i18n.language === "ar"
+                        ? "-translate-x-1"
+                        : "translate-x-1"
+                    }`}
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
+                    {darkMode ? (
+                      <MoonIcon className="w-4 h-4 text-blue-500" />
+                    ) : (
+                      <SunIcon className="w-4 h-4 text-yellow-400" />
+                    )}
+                  </span>
                 </button>
 
-                {open && (
-                  <div className="absolute z-50 mt-2 w-40 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                    <div className="py-1">
-                      {options.map((opt) => (
+                {/* Language + Logout */}
+                <div className="relative">
+                  <button
+                    onClick={() => setOpenLang(!openLang)}
+                    className={`inline-flex items-center justify-between w-36 px-4 py-2 ${
+                      darkMode
+                        ? "bg-gray-800 text-white"
+                        : "bg-white text-black"
+                    } border border-gray-300 rounded-xl shadow-sm text-sm font-semibold`}
+                  >
+                    {options.find((opt) => opt.value === selected)?.label}
+                    <i
+                      className={`fa-solid fa-chevron-down text-xs transition-transform ${
+                        openLang ? "rotate-180" : ""
+                      }`}
+                    ></i>
+                  </button>
+
+                  {openLang && (
+                    <div
+                      className={`absolute right-0 mt-2 w-36 rounded-xl shadow-lg ${
+                        darkMode ? "bg-gray-800 text-white" : "bg-white"
+                      } ring-1 ring-black ring-opacity-5 z-50`}
+                    >
+                      <div className="py-1">
+                        {options.map((opt) => (
+                          <button
+                            key={opt.value}
+                            onClick={() => handleSelect(opt.value)}
+                            className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-100 ${
+                              darkMode
+                                ? "hover:text-blue-400"
+                                : "hover:text-blue-600"
+                            }`}
+                          >
+                            {opt.label}
+                          </button>
+                        ))}
+                        <div className="border-t my-1"></div>
                         <button
-                          key={opt.value}
-                          onClick={() => handleSelect(opt.value)}
-                          className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 hover:text-blue-600 transition-all font-medium"
+                          onClick={deleteToken}
+                          className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                         >
-                          {opt.label}
+                          <i className="fa-solid fa-arrow-right-from-bracket me-2"></i>
+                          {t("logout")}
                         </button>
-                      ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            </>
+                  )}
+                </div>
+              </>
             ) : (
               <>
-                <NavLink
-                  to={"register"}
-                  className="text-sm font-semibold text-gray-500 dark:text-gray-400"
-                >
+                <NavLink to="register" className="font-semibold">
                   {t("register")}
                 </NavLink>
-                <NavLink
-                  to={"login"}
-                  className="text-sm font-semibold text-gray-500 dark:text-gray-400 ms-3 "
-                >
+                <NavLink to="login" className="font-semibold">
                   {t("login")}
                 </NavLink>
-                        <div className="relative inline-block text-left ">
-                <button
-                  onClick={() => setOpend(!open)}
-                  className="inline-flex items-center justify-between w-40 px-4 py-2 bg-white border border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-semibold"
-                >
-                  {options.find((opt) => opt.value === selected)?.label}
-                  <svg
-                    className={`w-4 h-4 ml-2 transition-transform ${open ? "rotate-180" : ""}`}
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
+                <div className="relative">
+                  <button
+                    onClick={() => setOpenLang(!openLang)}
+                    className={`inline-flex items-center justify-between w-36 px-4 py-2 ${
+                      darkMode
+                        ? "bg-gray-800 text-white"
+                        : "bg-white text-black"
+                    } border border-gray-300 rounded-xl shadow-sm text-sm font-semibold`}
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
+                    {options.find((opt) => opt.value === selected)?.label}
+                    <i
+                      className={`fa-solid fa-chevron-down text-xs transition-transform ${
+                        openLang ? "rotate-180" : ""
+                      }`}
+                    ></i>
+                  </button>
 
-                {open && (
-                  <div className="absolute z-50 mt-2 w-40 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                    <div className="py-1">
-                      {options.map((opt) => (
-                        <button
-                          key={opt.value}
-                          onClick={() => handleSelect(opt.value)}
-                          className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 hover:text-blue-600 transition-all font-medium"
-                        >
-                          {opt.label}
-                        </button>
-                      ))}
+                  {openLang && (
+                    <div
+                      className={`absolute right-0 mt-2 w-36 rounded-xl shadow-lg ${
+                        darkMode ? "bg-gray-800 text-white" : "bg-white"
+                      } ring-1 ring-black ring-opacity-5 z-50`}
+                    >
+                      <div className="py-1">
+                        {options.map((opt) => (
+                          <button
+                            key={opt.value}
+                            onClick={() => handleSelect(opt.value)}
+                            className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-100 ${
+                              darkMode
+                                ? "hover:text-blue-400"
+                                : "hover:text-blue-600"
+                            }`}
+                          >
+                            {opt.label}
+                          </button>
+                        ))}
+                        <div className="border-t my-1"></div>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
               </>
             )}
-            
           </div>
-        {isOpen && (
-  <motion.nav
-    initial={{ x: 300 }}
-    animate={{ x: 0 }}
-    exit={{ x: 300 }}
-    className="fixed lg:hidden right-0 top-0 z-50 h-screen w-1/2 bg-slate-200 dark:bg-gray-900 shadow-md p-6"
-  >
-    {/* cloth*/}
-    <button
-      onClick={() => setOpen(false)}
-      className="absolute top-4 end-4 text-gray-600 dark:text-gray-300 text-2xl z-50"
-    >
-      <i className="fa-solid fa-xmark"></i>
-    </button>
-
-    {/*   عناصر المينيو */}
-    <div className="flex flex-col mt-12 gap-y-4">
-      {UserToken ? (
-        <>
-          <NavLink to="/" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300 text-base">
-            {t("home")}
-          </NavLink>
-          <NavLink to="/category" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300 text-base">
-            {t("category")}
-          </NavLink>
-          <NavLink to="/brands" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300 text-base">
-            {t("brands")}
-          </NavLink>
-          <NavLink to="/products" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300 text-base">
-            {t("products")}
-          </NavLink>
-          <NavLink to="/cart" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300 text-base">
-            {t("cart")}
-          </NavLink>
-          <NavLink to="/whishList" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300 text-base">
-            {t("wishlist")}
-          </NavLink>
-          <span
-            onClick={() => {
-              deleteToken();
-              setOpen(false);
-            }}
-            className="cursor-pointer text-gray-700 dark:text-gray-300 text-base"
-          >
-            {t("logout")}
-          </span>
-        </>
-      ) : (
-        <>
-          <NavLink to="/register" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300 text-base">
-            {t("register")}
-          </NavLink>
-          <NavLink to="/login" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300 text-base">
-            {t("login")}
-          </NavLink>
-        </>
-      )}
-      <div className="flex gap-2 mt-4 ">
-        <button onClick={() => changeLanguage("ar")} title="العربية" className="w-8 h-6">
-          <img src="https://flagcdn.com/w40/eg.png" alt="Arabic" className="rounded-md w-full h-full object-cover" />
-        </button>
-        <button onClick={() => changeLanguage("en")} title="English" className="w-8 h-6">
-          <img src="https://flagcdn.com/w40/us.png" alt="English" className="rounded-md w-full h-full object-cover" />
-        </button>
-      </div>
-
-      {/* زرار تغيير اللغة في الموبايل */}
-    </div>
-  </motion.nav>
-)}
-
         </nav>
-        
       </motion.header>
+
+      {/* ✅ Mobile Menu (Drawer) */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden"
+          onClick={() => setOpen(false)}
+        >
+          <motion.div
+            onClick={(e) => e.stopPropagation()}
+            initial={{ x: i18n.language === "ar" ? 300 : -300 }}
+            animate={{ x: 0 }}
+            exit={{ x: i18n.language === "ar" ? 300 : -300 }}
+            transition={{ duration: 0.3, type: "spring" }}
+            className={`fixed top-0 ${
+              i18n.language === "ar" ? "right-0" : "left-0"
+            } h-full w-3/4 sm:w-1/2 ${
+              darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+            } shadow-lg p-6 flex flex-col gap-5`}
+          >
+            <button
+              onClick={() => setOpen(false)}
+              className="self-end text-3xl text-gray-500 hover:text-red-500 transition"
+            >
+              <i className="fa-solid fa-xmark"></i>
+            </button>
+
+            {UserToken && (
+              <>
+                <NavLink
+                  to="/"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 text-lg font-semibold hover:text-main"
+                >
+                  <i className="fa-solid fa-house"></i> {t("home")}
+                </NavLink>
+                <NavLink
+                  to="/category"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 text-lg font-semibold hover:text-main"
+                >
+                  <i className="fa-solid fa-list"></i> {t("category")}
+                </NavLink>
+                <NavLink
+                  to="/brands"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 text-lg font-semibold hover:text-main"
+                >
+                  <i className="fa-solid fa-tag"></i> {t("brands")}
+                </NavLink>
+                <NavLink
+                  to="/products"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 text-lg font-semibold hover:text-main"
+                >
+                  <i className="fa-solid fa-box"></i> {t("products")}
+                </NavLink>
+
+                <div className="border-t my-4 border-gray-600/30"></div>
+
+                <NavLink
+                  to="cart"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 text-lg font-semibold hover:text-main"
+                >
+                  <i className="fa-solid fa-cart-shopping"></i> {t("cart")}
+                </NavLink>
+                <NavLink
+                  to="whishList"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 text-lg font-semibold hover:text-main"
+                >
+                  <i className="fa-regular fa-heart"></i> {t("wishlist")}
+                </NavLink>
+
+                <button
+                  onClick={toggleMe}
+                  className="mt-3 flex items-center gap-2 px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition w-fit"
+                >
+                  {darkMode ? (
+                    <>
+                      <SunIcon className="w-5 h-5 text-yellow-400" />
+                      {t("light mode")}
+                    </>
+                  ) : (
+                    <>
+                      <MoonIcon className="w-5 h-5 text-blue-500" />
+                      {t("dark mode")}
+                    </>
+                  )}
+                </button>
+
+                <button
+                  onClick={deleteToken}
+                  className="text-red-500 font-semibold mt-4 flex items-center gap-2 text-center"
+                >
+                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                  {t("logout")}
+                </button>
+              </>
+            )}
+          </motion.div>
+        </div>
+      )}
     </>
   );
 }

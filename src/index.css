@@ -15,10 +15,12 @@
 }
 body{
     /* min-height: 80vh;
-    font-family: "Roboto Mono", serif;     */
+    font-family: "Roboto Mono", serif;     */ 
      font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-variation-settings:
     "wdth" 100;
+    background-image: url('../src/assets/food.png');
 }
+      

@@ -1,8 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// ترجمة الجمل
-const resources = {
+ const resources = {
   en: {
     translation: {
       home: 'Home',
@@ -39,12 +38,13 @@ const resources = {
       EnterYourEmail : 'Enter Your Email',
       EnterYourPassword : 'Enter Your Password',
       forgetyourpassword : 'forget your password',
-      sign : 'sign',
+      sign : 'sign in',
       emailisrequired : 'email is required',
       passwordisrequired : 'password is required',
       invalidemail : 'invalid email',
       min3characters : 'min 3 characters',
       max15characters : 'max 15 characters',
+      NewPassword:'New Password',
       Register : 'Register',
       EnterYourname : 'Enter Your Name',
       EnterYourrePassword :'Enter Your rePassword',
@@ -54,14 +54,74 @@ const resources = {
      nomatchwithpassword : 'no match with password',
      Phoneisrequired : 'Phone is required',
      WeNeedEgyptianNumber : 'We Need Egyptian Number',
-     entertruepasswordlike :  'enter true password like (Ziad)'
+     entertruepasswordlike :  'enter true password like (Ziad222)',
+     SignintoFreshCart:'Sign in to FreshCart',
+     WelcomebacktoFreshCartEnteryouremailtogetstarted:'Welcome back to FreshCart! Enter your email to get started.',
+     signin:'sign in',
+     Youdonthaveaaccount:'You don’t have an account ? ',
+     SignUp:'Sign Up',
+     ForgetYourPassword:'Forget Your Password ?',
+     RegisterNowAndStartShopping:'Register Now And Start Shopping',
+     Youhaveanaccount:'You have an account ?',
+     ForgetPassword:'Forget Password',
+     Enteryouremailandwewillsendyouaresetcode:'Enter your email and we will send you a reset code',
+     Sendcode:'Send Code',
+     VerifyResetCode:'Verify Reset Code',
+     Verifycode:'Verify Code',
+     Enterthe6digitcodesenttoyouremail:'Enter the 6-digit code sent to your email',
+     Resetcode:'Reset Code',
+     Enterresetcode:"Enter reset code",
+     Verify:'Verify',
+     SetNewPassword:'Set New Password',
+     Setyournewpasswordtoaccessyouraccount:'Set your new password to access your account',
+     ResetPassword:'Reset Password',
+     ViewImage:'View Image',
+     WeWillSendYouain:' We Will Send You a Link, Open it On Your Phone to download the app',
+     GettheFreshCarapp:'Get the FreshCart app',
+     ShareAppLink:'Share App Link',
+     PaymentPartners:'Payment Partners',
+     GetdeliverieswithFreshCart:'Get deliveries with FreshCart',
+     PayCash:'Pay Cash',
+     Enteryourdetails:'Enter your details',
+     Enteryourcity:'Enter your city',
+     PayVisa:'Pay Visa',
 
     }
   },
   ar: {
     translation: {
       home: 'الرئيسية',
+      Enteryourcity:'أدخل مدينتك',
+      PayVisa:'دفع فيزا',
+      PayCash:'الدفع نقدا',
+      PaymentPartners:'شركاء الدفع',
+      GetdeliverieswithFreshCart:'احصل على عمليات التسليم مع FreshCart',
+      GettheFreshCarapp:'احصل على تطبيق FreshCart',
+      ShareAppLink:'مشاركة رابط التطبيق',
+      WeWillSendYouain:'سنرسل لك رابطًا، افتحه على هاتفك لتنزيل التطبيق',
+      Sendcode:'أرسل الكود',
+      Verifycode:'التحقق من الرمز',
+      Enteryouremailandwewillsendyouaresetcode:'أدخل بريدك الإلكتروني وسنرسل لك رمز إعادة التعيين',
+      VerifyResetCode:'التحقق من رمز إعادة الضبط',
+      ForgetPassword:'نسيت كلمة المرور',
+      Enterthe6digitcodesenttoyouremail:"أدخل الرمز المكون من 6 أرقام المرسل إلى بريدك الإلكتروني",
+      RegisterNowAndStartShopping:'سجل الآن وابدأ التسوق',
+      Enteryourdetails:'أدخل تفاصيلك',
+      ForgetYourPassword:'هل نسيت كلمة المرور الخاصة بك ؟ ',
+      SignintoFreshCart:'تسجيل الدخول إلى FreshCart',
+      WelcomebacktoFreshCartEnteryouremailtogetstarted:'مرحبًا بك مجددًا في FreshCart! أدخل بريدك الإلكتروني للبدء.',
+      Setyournewpasswordtoaccessyouraccount:'قم بتعيين كلمة المرور الجديدة للوصول إلى حسابك',
       category: 'الفئات',
+      Enterresetcode:"أدخل رمز إعادة الضبط",
+      SetNewPassword:'تعيين كلمة مرور جديدة',
+      Verify:'تأكيد',
+      NewPassword:"كلمة المرور الجديدة",
+      Resetcode:'إعادة تعيين الرمز',
+      ResetPassword:'إعادة تعيين كلمة المرور',
+      Youhaveanaccount:' لديك حساب؟',
+      signin:'  تسجيل الدخول',
+      SignUp:'  تسجيل الدخول  ',
+      Youdonthaveaaccount:' ليس لديك حساب؟',
       brands: 'الماركات',
       products: 'المنتجات',
       wishlist: 'المفضلة',
@@ -110,7 +170,9 @@ const resources = {
       nomatchwithpassword : 'غير متطابق معا كلمت المرور',
       Phoneisrequired : 'مطلوب',
       WeNeedEgyptianNumber : 'يجب ان يكون الرقم مصري',
-      entertruepasswordlike : '(Ziad) ادخل كلمه مرور صحيحه مثل' 
+      entertruepasswordlike : '(Ziad222) ادخل كلمه مرور صحيحه مثل' ,
+      ViewImage:'عرض الصوره',
+      Enteryourcity:'أدخل مدينتك',
 
     }
   }
@@ -120,7 +182,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en', // اللغة الافتراضية
+    lng: 'en',  
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false

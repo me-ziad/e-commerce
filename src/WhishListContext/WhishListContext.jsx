@@ -10,7 +10,7 @@ export default function WhishListContextProvider({ children }) {
     token: localStorage.getItem("userToken"),
   };
   const [showWhishList, setShowWhishList] = useState([]);
-    const { UserToken } = useContext(UserContext); // 🧠 استخدم التوكن من context مش من localStorage
+    const { UserToken } = useContext(UserContext);  
     const [whishLists, setWhishLists] = useState(null);
   
 
@@ -30,7 +30,7 @@ export default function WhishListContextProvider({ children }) {
   }
 
   async function displayWhishList() {
-        if (!UserToken) return setWhishLists(null); // ✅ صفّر الكارت لو مفيش user
+        if (!UserToken) return setWhishLists(null); 
     try {
       const { data } = await axios.get(
         "https://ecommerce.routemisr.com/api/v1/wishlist",

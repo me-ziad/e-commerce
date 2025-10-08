@@ -6,10 +6,7 @@ import { Outlet } from 'react-router-dom'
 export default function Layout() {
   return <>
     <Navbar></Navbar>
-
-
     <div className="container mt-20 min-h-60">
-
     <Outlet/>
     </div>
     
