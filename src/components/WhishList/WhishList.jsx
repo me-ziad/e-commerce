@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { WhisListContext } from "../../WhishListContext/WhishListContext";
 import { CartContext } from "../CartContext/CartContext";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Loader from "../Loader/Loader";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";

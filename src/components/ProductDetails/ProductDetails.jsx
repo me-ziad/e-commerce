@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import { CartContext } from "../CartContext/CartContext";
 import { WhisListContext } from "../../WhishListContext/WhishListContext";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Loader from "../Loader/Loader";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
@@ -38,11 +38,9 @@ export default function ProductDetails() {
   const handleWishlistToggle = async (productId) => {
     if (isInWishlist(productId)) {
       await deleteWhishList(productId);
-      toast.error(t("Removed from favourites"));
-    } else {
+     } else {
       await postWhishList(productId);
-      toast.success(t("Added to favourites"));
-    }
+     }
   };
 
   async function productDetails(details) {
@@ -87,7 +85,7 @@ export default function ProductDetails() {
       ) : (
         <>
           <div className="container">
-            <div className="lg:flex rounded-lg shadow-xl border lg:items-center dark:text-gray-300 p-5 bg-slate-100 dark:bg-slate-800 bg-opacity-60 dark:bg-opacity-100">
+            <div className="lg:flex rounded-lg shadow-xl   lg:items-center dark:text-gray-300 p-5 bg-slate-100 dark:bg-slate-800 bg-opacity-60 dark:bg-opacity-100">
               <div className="lg:w-1/4">
                 <Slider {...settings}>
                   {products.images.map((image, index) => (
@@ -233,7 +231,7 @@ export default function ProductDetails() {
                         className={`p-2 rounded-full shadow-md hover:scale-110 transition-transform duration-300 ${
                           isFav
                             ? "bg-gradient-to-r from-red-400 to-red-600 text-white shadow-[0_0_10px_rgba(239,68,68,0.7)]"
-                            : "bg-gray-200 text-gray-700 dark:bg-slate-700 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-600 hover:text-white"
+                            : "bg-gray-200 text-gray-100 dark:bg-slate-700 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-600 hover:text-white"
                         }`}
                         title={t("Wishlist")}
                       >

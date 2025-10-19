@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import Loader from "../Loader/Loader";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 
 export default function Brands() {
   const [brandDetails, setBrandDetails] = useState([]);
@@ -47,6 +48,10 @@ export default function Brands() {
 
   return (
     <>
+         <Helmet>
+        <title>{t("AllBrands")}</title>
+        <link rel="canonical" href="http://mysite.com/cart" />
+      </Helmet>
       <h1 className="text-gray-600 dark:text-gray-300 text-2xl font-semibold mb-6 px-10 tracking-wide">
         {t("AllBrands")}
       </h1>

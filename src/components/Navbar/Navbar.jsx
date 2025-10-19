@@ -90,7 +90,7 @@ export default function Navbar() {
         variants={divValidation}
         initial="hidden"
         animate="visible"
-        className={`fixed inset-x-0 top-0 z-40 border-b transition-all duration-500 lg:px-14 ${
+        className={`fixed inset-x-0 top-0 z-40 border-b transition-all duration-500 lg:px-14 navFont ${
           darkMode
             ? "bg-gray-900 border-gray-700 text-white"
             : "bg-slate-100 border-gray-300 text-gray-900"
@@ -289,7 +289,7 @@ export default function Navbar() {
       {/* ✅ Mobile Menu (Drawer) */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden navFont"
           onClick={() => setOpen(false)}
         >
           <motion.div

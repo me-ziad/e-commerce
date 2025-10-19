@@ -98,7 +98,7 @@ export default function Product() {
                 key={product.id}
                 className="m-auto p-4 lg:p-2 w-full md:w-1/2 lg:w-1/5"
               >
-                <div className="relative bg-slate-100 dark:bg-slate-800 dark:text-gray-300 group overflow-hidden rounded-md border border-transparent hover:border-main hover:shadow-lg transition-all duration-300">
+                <div className="relative bg-white dark:bg-slate-800 dark:text-gray-300 group overflow-hidden rounded-md border border-transparent hover:border-main hover:shadow-lg transition-all duration-300">
                   {/* Image */}
                   <div
                     onClick={() => setModalImage(product.imageCover)}
@@ -154,7 +154,7 @@ export default function Product() {
                       className={`p-2 rounded-full shadow-md hover:scale-110 transition-transform duration-300 ${
                         isCarted
                           ? "bg-gradient-to-r from-green-400 to-green-600 text-white shadow-[0_0_10px_rgba(34,197,94,0.7)]"
-                          : "bg-gray-200 text-gray-700 dark:bg-slate-700 hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:text-white"
+                          : "bg-gray-200 text-gray-700 dark:bg-slate-100 hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:text-white"
                       }`}
                       title={t("AddtoCart")}
                     >
@@ -167,7 +167,7 @@ export default function Product() {
                       className={`p-2 rounded-full shadow-md hover:scale-110 transition-transform duration-300 ${
                         isFav
                           ? "bg-gradient-to-r from-red-400 to-red-600 text-white shadow-[0_0_10px_rgba(239,68,68,0.7)]"
-                          : "bg-gray-200 text-gray-700 dark:bg-slate-700 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-600 hover:text-white"
+                          : "bg-gray-200 text-gray-700 dark:bg-slate-100 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-600 hover:text-white"
                       }`}
                       title={t("Wishlist")}
                     >

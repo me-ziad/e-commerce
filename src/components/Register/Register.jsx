@@ -7,7 +7,7 @@ import { UserContext } from "../../Context/UserContext";
 import toast from "react-hot-toast";
 import imgs from "../../assets/signup-g-Dtp6-wtD.svg";
 import { useTranslation } from "react-i18next";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Register() {
   const [loding, setLoding] = useState(false);

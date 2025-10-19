@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import CategorySlider from "../CategorySlider/CategorySlider";
 import HomeSliderCateory from "../HomeSliderCategory/HomeSliderCateory";
 import RecentProduct from "../RecentProduct/RecentProduct";
@@ -6,7 +6,7 @@ import RecentProduct from "../RecentProduct/RecentProduct";
 export default function Home() {
   return (
     <>
-      <div className="container overflow-hidden">
+      <div className="  overflow-hidden">
         <HomeSliderCateory></HomeSliderCateory>
         <Helmet>
           <title>Home</title>

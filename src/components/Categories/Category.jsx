@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import Loader from "../Loader/Loader";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 
 export default function Category() {
   const [loader, setLoader] = useState(false);
@@ -45,6 +46,10 @@ export default function Category() {
 
   return (
     <>
+         <Helmet>
+        <title>{t("AllCategory")}</title>
+        <link rel="canonical" href="http://mysite.com/cart" />
+      </Helmet>
       <h1 className="text-gray-600 dark:text-gray-300 text-2xl font-semibold mb-6 px-10 tracking-wide">
         {t("AllCategory")}
       </h1>
