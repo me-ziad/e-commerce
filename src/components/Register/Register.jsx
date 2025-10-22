@@ -85,7 +85,7 @@ export default function Register() {
       </Helmet>
 
       <div className="min-h-screen bg-[url('/background-pattern.png')] bg-cover bg-center flex items-center justify-center px-4">
-        <div className="bg-white bg-opacity-55 rounded-xl shadow-xl w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+        <div className="bg-white bg-opacity-55 rounded-xl shadow-xl w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
           {/* Left Side Image */}
           <div className="hidden lg:flex items-center justify-center bg-white bg-opacity-20">
             <img src={imgs} alt="Register Illustration" className="w-3/4" />
@@ -154,7 +154,9 @@ export default function Register() {
               </div>
 
               {/* Password */}
-              <div>
+              <div className=" flex flex-col md:flex-row justify-between items-center gap-2 w-full">
+
+              <div className="w-full">
                 <label
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700 mb-1"
@@ -177,7 +179,7 @@ export default function Register() {
               </div>
 
               {/* RePassword */}
-              <div>
+              <div className="w-full">
                 <label
                   htmlFor="rePassword"
                   className="block text-sm font-medium text-gray-700 mb-1"
@@ -191,13 +193,14 @@ export default function Register() {
                   value={formik.values.rePassword}
                   onChange={formik.handleChange}
                   className="w-full border border-gray-300 px-4 py-2 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
-                />
+                  />
                 {formik.errors.rePassword && formik.touched.rePassword && (
                   <p className="text-sm text-red-500 mt-1">
                     {formik.errors.rePassword}
                   </p>
                 )}
               </div>
+                </div>
 
               {/* Phone */}
               <div>

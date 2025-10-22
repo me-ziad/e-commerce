@@ -85,7 +85,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ✅ Navbar */}
+      {/*  Navbar */}
       <motion.header
         variants={divValidation}
         initial="hidden"
@@ -286,7 +286,7 @@ export default function Navbar() {
         </nav>
       </motion.header>
 
-      {/* ✅ Mobile Menu (Drawer) */}
+      {/*  Mobile Menu (Drawer) */}
       {isOpen && (
         <div
           className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden navFont"
