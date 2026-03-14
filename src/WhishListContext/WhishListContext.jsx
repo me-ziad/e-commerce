@@ -16,9 +16,7 @@ export default function WhishListContextProvider({ children }) {
 
   async function postWhishList(productId) {
     try {
-      const { data } = await axios.post(
-        "https://ecommerce.routemisr.com/api/v1/wishlist",
-        { productId },
+      const { data } = await axios.post("https://ecommerce.routemisr.com/api/v1/wishlist",{ productId },
         { headers }
       );
       toast.success(data.message || "Added to wishlist successfully");

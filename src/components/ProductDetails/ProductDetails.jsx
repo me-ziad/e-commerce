@@ -88,7 +88,7 @@ export default function ProductDetails() {
             <div className="lg:flex rounded-lg shadow-xl   lg:items-center dark:text-gray-300 p-5 bg-slate-100 dark:bg-slate-800 bg-opacity-60 dark:bg-opacity-100">
               <div className="lg:w-1/4">
                 <Slider {...settings}>
-                  {products.images.map((image, index) => (
+                  {products.images?.map((image, index) => (
                     <img key={index} className="w-full" src={image} alt="" />
                   ))}
                 </Slider>
